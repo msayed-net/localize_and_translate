@@ -54,6 +54,8 @@ class _MyAppState extends State<MyApp> {
               SizedBox(height: 150),
               OutlineButton(
                 onPressed: () {
+
+                  // FIXME: Layout not switching
                   translator.setNewLanguage(
                     context,
                     newLanguage: translator.currentLanguage == 'ar' ? 'en' : 'ar',
