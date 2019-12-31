@@ -1,0 +1,22 @@
+PODS:
+  - Flutter (1.0.0)
+  - localize_and_translate (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - localize_and_translate (from `.symlinks/plugins/localize_and_translate/ios`)
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  localize_and_translate:
+    :path: ".symlinks/plugins/localize_and_translate/ios"
+
+SPEC CHECKSUMS:
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  localize_and_translate: 04451a79386398601f1ec8fa87921a5af8f094b4
+
+PODFILE CHECKSUM: 1b66dae606f75376c5f2135a8290850eeb09ae83
+
+COCOAPODS: 1.7.5
