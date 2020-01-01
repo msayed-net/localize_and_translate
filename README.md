@@ -3,7 +3,7 @@ localization and translation was never easier, simple way to translate your flut
 
 
 ## Screenshots
-<img src="screenshot1.png" alt="screenshot" width="200"/><span>  </span><img src="screenshot2.png" alt="screenshot" width="200"/>
+<img src="https://github.com/MohamedSayed95/localize_and_translate/blob/master/screenshot1.png?raw=true" alt="screenshot" width="200"/><span>  </span><img src="https://github.com/MohamedSayed95/localize_and_translate/blob/master/screenshot2.png?raw=true" alt="screenshot" width="200"/>
 
 
 ## Methods
