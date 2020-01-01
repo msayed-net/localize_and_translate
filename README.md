@@ -4,6 +4,9 @@ with this magic plugin localization and translation was never easier, simple way
 
 ![screenshot 1](screenshot1.png)
 ![screenshot 2](screenshot2.png)
+<img src="screenshot1.jpg" alt="screenshot" width="200"/>
+<img src="screenshot2.jpg" alt="screenshot" width="200"/>
+
 
 
 # How To Use
