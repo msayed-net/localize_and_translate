@@ -166,7 +166,7 @@ class _HomeState extends State<Home> {
 
 
 ## Complete Example
-* [Example On Pub](https://img.shields.io/badge/Example-Ex-success)](https://pub.dev/packages/localize_and_translate#-example-tab-)
+* [Example On Pub](https://pub.dev/packages/localize_and_translate#-example-tab-)
 * [Example On Github](https://github.com/MohamedSayed95/localize_and_translate/tree/master/example)
 
 
