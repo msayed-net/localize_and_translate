@@ -6,14 +6,6 @@ localization and translation was never easier, simple way to translate your flut
 <img src="screenshot1.png" alt="screenshot" width="200"/><span>  </span><img src="screenshot2.png" alt="screenshot" width="200"/>
 
 
-
-## How To Use
-1. add `localize_and_translate: ^<latest>` to pubspec.yaml dependencies.  
-2. run `flutter pub get` into root dir of the app
-3. add `import 'package:flutter_localizations/flutter_localizations.dart';` to use `GlobalMaterialLocalizations.delegate`
-4. add `import 'package:localize_and_translate/localize_and_translate.dart';` to use plugin :grin:.
-
-
 ## Methods
 | Method        | Job           |
 | ------------- |:-------------:|
@@ -23,6 +15,90 @@ localization and translation was never easier, simple way to translate your flut
 | `translate(word)` |returns word translation |
 | `setNewLanguage('en')` |switch to another language |
 | `locals()` |returns current Locales |
+
+
+## How To Use
+1. add `localize_and_translate: ^<latest>` to pubspec.yaml dependencies
+2. run `flutter pub get` into root dir of the app
+3. add `import 'package:flutter_localizations/flutter_localizations.dart';` to use `GlobalMaterialLocalizations.delegate`
+4. add `import 'package:localize_and_translate/localize_and_translate.dart';` to use plugin :grin:
+5. wrap app entry into `LocalizedApp()`, and make sure you define it's child into different place "NOT INSIDE"
+```dart
+  runApp(
+    LocalizedApp(
+      child: MyApp(),
+    ),
+  );
+```
+6. convert your `main()` method to async, we will need next
+```dart
+Future<void> main() async {
+  runApp(
+    LocalizedApp(
+      child: MyApp(),
+    ),
+  );
+}
+```
+7. add `WidgetsFlutterBinding.ensureInitialized();` at very first of `main()`
+8. inside `main()` define your languages
+```dart
+LIST_OF_LANGS = ['ar', 'en'];
+```
+9. add `.json` translation files as assets
+* For example : `'assets/langs/ar.json'`| `'assets/langs/en.json'
+* define them as assets into pubspec.yaml
+```yaml
+flutter:
+  assets:
+    - assets/langs/en.json
+    - assets/langs/ar.json
+```
+* run `flutter pub get`
+* into `main()` define your root directory
+```dart
+LANGS_DIR = 'assets/langs/';
+```
+10. intialize plugin `await translator.init();`
+* so now your `main()` should look like this
+```dart
+Future<void> main() async {
+  // if your flutter > 1.7.8 :  ensure flutter activated
+  WidgetsFlutterBinding.ensureInitialized();
+
+  LIST_OF_LANGS = ['ar', 'en']; // define languages
+  LANGS_DIR = 'assets/langs/'; // define directory
+  await translator.init(); // intialize
+
+  runApp(
+    LocalizedApp(
+      child: MyApp(),
+    ),
+  );
+}
+```
+11. define your `LocalizedApp()` child as `MaterialApp()` like this
+```dart
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Home(), // re Route
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      locale: translator.locale,
+      supportedLocales: translator.locals(),
+    );
+  }
+}
+```
 
 
 ## Complete Example
