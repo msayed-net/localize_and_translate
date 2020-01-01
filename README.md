@@ -8,6 +8,10 @@ localization and translation was never easier, simple way to translate your flut
 
 
 ## How To Use
+1. add `localize_and_translate: ^<latest>` to pubspec.yaml dependencies.  
+2. run `flutter pub get` into root dir of the app
+3. add `import 'package:flutter_localizations/flutter_localizations.dart';` to use `GlobalMaterialLocalizations.delegate`
+4. add `import 'package:localize_and_translate/localize_and_translate.dart';` to use plugin :grin:.
 
 
 ## Methods
