@@ -13,12 +13,12 @@ localization and translation was never easier, simple way to translate your flut
 ## Methods
 | Method        | Job           |
 | ------------- |:-------------:|
-| `currentLanguage` | returns current Language |
-| `locale`      | returns current Locale |
-| `init()`      | initialize things, before runApp() |
-| `translate(word)`      | returns word translation |
-| `setNewLanguage('en')`      | switch to another language |
-| `locals()`      | returns current Locales |
+| `currentLanguage` |returns current Language |
+| `locale` |returns current Locale |
+| `init()` |initialize things, before runApp() |
+| `translate(word)` |returns word translation |
+| `setNewLanguage('en')` |switch to another language |
+| `locals()` |returns current Locales |
 
 
 ## Complete Example
