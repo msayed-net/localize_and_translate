@@ -11,18 +11,14 @@ localization and translation was never easier, simple way to translate your flut
 
 
 ## Methods
-| Tables        | Are           |
+| Method        | Job           |
 | ------------- |:-------------:|
 | `currentLanguage` | returns current Language |
-| col 2 is      | centered      |
-| zebra stripes | are neat      |
-* `currentLanguage` : returns current Language
-* `locale` : returns current Locale
-* `locals()` : returns current Locales
-* `translate(word)`  : returns word translation
-* `init()` : initialize things, before runApp()
-* `setNewLanguage('en')` : switch to another language
-
+| `locale`      | returns current Locale |
+| `init()`      | initialize things, before runApp() |
+| `translate(word)`      | returns word translation |
+| `setNewLanguage('en')`      | switch to another language |
+| `locals()`      | returns current Locales |
 
 
 ## Complete Example
