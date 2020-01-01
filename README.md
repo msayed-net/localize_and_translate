@@ -45,8 +45,22 @@ Future<void> main() async {
 ```dart
 LIST_OF_LANGS = ['ar', 'en'];
 ```
+
 9. add `.json` translation files as assets
 * For example : `'assets/langs/ar.json'`| `'assets/langs/en.json'
+* structure should look like
+```json
+{
+  "appTitle" : "Example",
+  "buttonName" : "التحول للعربية",
+}
+```
+```json
+{
+  "appTitle" : "تجربة",
+  "buttonName" : "English",
+}
+```
 * define them as assets into pubspec.yaml
 ```yaml
 flutter:
@@ -59,6 +73,7 @@ flutter:
 ```dart
 LANGS_DIR = 'assets/langs/';
 ```
+
 10. intialize plugin `await translator.init();`
 * so now your `main()` should look like this
 ```dart
@@ -77,6 +92,7 @@ Future<void> main() async {
   );
 }
 ```
+
 11. define your `LocalizedApp()` child as `MaterialApp()` like this
 ```dart
 class MyApp extends StatefulWidget {
@@ -95,6 +111,54 @@ class _MyAppState extends State<MyApp> {
       ],
       locale: translator.locale,
       supportedLocales: translator.locals(),
+    );
+  }
+}
+```
+
+12. enjoy like next example
+* we use  `translate(word)`
+* `setNewLanguage(languageCode)` : and it's parameters
+```dart
+class Home extends StatefulWidget {
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      drawer: Drawer(),
+      appBar: AppBar(
+        title: Text(translator.translate('appTitle')),
+        // centerTitle: true,
+      ),
+      body: Container(
+        width: double.infinity,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            SizedBox(height: 50),
+            Text(
+              translator.translate('textArea'),
+              style: TextStyle(fontSize: 35),
+            ),
+            SizedBox(height: 150),
+            OutlineButton(
+              onPressed: () {
+                translator.setNewLanguage(
+                  context,
+                  newLanguage: translator.currentLanguage == 'ar' ? 'en' : 'ar',
+                  remember: true,
+                  restart: true,
+                );
+              },
+              child: Text(translator.translate('buttonTitle')),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
