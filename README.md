@@ -1,20 +1,21 @@
 # localize_and_translate
-
 with this magic plugin localization and translation was never easier, simple way to translate your flutter apps and make it international
 
+
+## Screenshots
 <img src="screenshot1.png" alt="screenshot" width="200"/>
 <img src="screenshot2.png" alt="screenshot" width="200"/>
 
 
 
-# How To Use
+## How To Use
 
 
-# Methods
+## Methods
 
 
 
-# Complete Example
+## Complete Example
 ```dart
 
 ```
