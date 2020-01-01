@@ -11,6 +11,11 @@ localization and translation was never easier, simple way to translate your flut
 
 
 ## Methods
+| Tables        | Are           |
+| ------------- |:-------------:|
+| `currentLanguage` | returns current Language |
+| col 2 is      | centered      |
+| zebra stripes | are neat      |
 * `currentLanguage` : returns current Language
 * `locale` : returns current Locale
 * `locals()` : returns current Locales
