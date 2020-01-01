@@ -1,5 +1,5 @@
 # localize_and_translate
-with this magic plugin localization and translation was never easier, simple way to translate your flutter apps and make it international
+localization and translation was never easier, simple way to translate your flutter apps and make it international
 
 
 ## Screenshots
@@ -11,6 +11,12 @@ with this magic plugin localization and translation was never easier, simple way
 
 
 ## Methods
+* `currentLanguage` : returns current Language
+* `locale` : returns current Locale
+* `locals()` : returns current Locales
+* `translate(word)`  : returns word translation
+* `init()` : initialize things, before runApp()
+* `setNewLanguage('en')` : switch to another language
 
 
 
