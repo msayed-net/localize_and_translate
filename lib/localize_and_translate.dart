@@ -30,6 +30,7 @@ class LocalizeAndTranslate {
 
   get currentLanguage =>
       _locale == null ? LIST_OF_LANGS[0] : _locale.languageCode;
+  get locale => _locale;
 
   Future<Null> init([String lang]) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();

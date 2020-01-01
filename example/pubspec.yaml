@@ -10,7 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^0.1.2
-  print_color: any
+  # print_color: any
   localize_and_translate:
     path: ../
 
