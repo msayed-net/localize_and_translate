@@ -1,6 +1,8 @@
 ## Next
 * Improvements
 
+## 1.0.1+1
+* Documentation Enhancements
 
 ## 1.0.1
 * first lanuch
