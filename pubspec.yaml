@@ -1,7 +1,6 @@
 name: localize_and_translate
 description: Easy Localize and Translate your flutter app, with this easy and powerful plugin
 version: 1.0.1
-author:
 homepage: https://github.com/MohamedSayed95/localize_and_translate
 
 environment:

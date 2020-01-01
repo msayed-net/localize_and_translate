@@ -179,5 +179,5 @@ class _HomeState extends State<Home> {
 ## My Plugins
 * [localize_and_translate](https://pub.dev/packages/localize_and_translate)
 * [user_auth](https://pub.dev/packages/user_auth)
-* [print_color](https://pub.dev/packages/print_color)
+* [print_color](https://pub.dev/packages/print_color) 
 
