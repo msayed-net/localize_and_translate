@@ -3,8 +3,7 @@ with this magic plugin localization and translation was never easier, simple way
 
 
 ## Screenshots
-<img src="screenshot1.png" alt="screenshot" width="200"/>
-<img src="screenshot2.png" alt="screenshot" width="200"/>
+<img src="screenshot1.png" alt="screenshot" width="200"/><img src="screenshot2.png" alt="screenshot" width="200"/>
 
 
 
