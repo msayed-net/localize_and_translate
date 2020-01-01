@@ -2,8 +2,8 @@
 
 with this magic plugin localization and translation was never easier, simple way to translate your flutter apps and make it international
 
-![screenshot 1](screenshot1.png  =250x)
-![screenshot 2](screenshot2.png  =250x)
+![screenshot 1](screenshot1.png)
+![screenshot 2](screenshot2.png)
 
 
 # How To Use
