@@ -2,7 +2,7 @@
 
 * Improvements
 
-## 1.0.1+3
+## 1.0.1+4
 
 * Documentation Enhancements
 * iOS Delegates
