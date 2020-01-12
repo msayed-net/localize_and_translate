@@ -22,7 +22,7 @@ localization and translation was never easier, simple way to translate your flut
 2. run `flutter pub get` into app folder
 3. add `.json` translation files as assets
 
-* For example : `'assets/langs/ar.json'` | `'assets/langs/en.json'
+* For example : `'assets/langs/ar.json'` | `'assets/langs/en.json'`
 * structure should look like
 
 ``` json
