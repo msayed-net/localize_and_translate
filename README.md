@@ -28,14 +28,14 @@ localization and translation was never easier, simple way to translate your flut
 ``` json
 {
   "appTitle" : "Example",
-  "buttonName" : "التحول للعربية",
+  "textArea" : "Thisi is just a test text",
 }
 ```
 
 ``` json
 {
   "appTitle" : "تجربة",
-  "buttonName" : "English",
+  "textArea" : "هذا مجرد نموذج للتأكد من اداء الاداة",
 }
 ```
 
