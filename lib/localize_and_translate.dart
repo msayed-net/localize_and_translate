@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'package:intl/intl.dart' as intl;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -72,7 +72,12 @@ class LocalizeAndTranslate {
     return null;
   }
 
-  restart(context) {
+  isDirectionRTL(BuildContext context) {
+    return intl.Bidi.isRtlLanguage(
+        Localizations.localeOf(context).languageCode);
+  }
+
+  restart(BuildContext context) {
     LocalizedApp.restart(context);
   }
 }

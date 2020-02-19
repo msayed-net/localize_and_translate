@@ -15,6 +15,7 @@ localization and translation was never easier, simple way to translate your flut
 | `translate('word')` |word translation |
 | `setNewLanguage(context,'en',restart: true, remember: true,)` |change language |
 | `locals()` |locales list |
+| `isDirectionRTL()` |is Direction RTL check |
 
 ## How To Use
 

@@ -2,6 +2,11 @@
 
 * Improvements
 
+## 1.1.1+6
+
+* add isDirectionRTL method
+
+
 ## 1.0.1+5
 
 * Documentation Enhancements
