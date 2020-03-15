@@ -3,7 +3,7 @@ localization and translation was never easier, simple way to translate your flut
 
 ## Screenshots
 
-<img src="https://github.com/MohamedSayed95/localize_and_translate/blob/master/screenshot1.png?raw=true" alt="screenshot" width="200"/><span>  </span><img src="https://github.com/MohamedSayed95/localize_and_translate/blob/master/screenshot2.png?raw=true" alt="screenshot" width="200"/>
+<img src="https://github.com/0x19950610/localize_and_translate/blob/master/screenshot1.png?raw=true" alt="screenshot" width="200"/><span>  </span><img src="https://github.com/0x19950610/localize_and_translate/blob/master/screenshot2.png?raw=true" alt="screenshot" width="200"/>
 
 ## Methods
 
@@ -195,13 +195,13 @@ class _HomeState extends State<Home> {
 ## Complete Example
 
 * [Pub](https://pub.dev/packages/localize_and_translate#-example-tab-)
-* [Github](https://github.com/MohamedSayed95/localize_and_translate/tree/master/example)
+* [Github](https://github.com/0x19950610/localize_and_translate/tree/master/example)
 
 ## Author
 
 [![Mohamed Sayed](./logo.png)](https://msayed.net)
 
-* [![Fork](https://img.shields.io/github/forks/MohamedSayed95/localize_and_translate?style=social)](https://github.com/MohamedSayed95/localize_and_translate/fork) &nbsp; [![Star](https://img.shields.io/github/stars/MohamedSayed95/localize_and_translate?style=social)](https://github.com/MohamedSayed95/localize_and_translate/stargazers) &nbsp; [![Watches](https://img.shields.io/github/watchers/MohamedSayed95/localize_and_translate?style=social)](https://github.com/MohamedSayed95/localize_and_translate/) 
+* [![Fork](https://img.shields.io/github/forks/0x19950610/localize_and_translate?style=social)](https://github.com/0x19950610/localize_and_translate/fork) &nbsp; [![Star](https://img.shields.io/github/stars/0x19950610/localize_and_translate?style=social)](https://github.com/0x19950610/localize_and_translate/stargazers) &nbsp; [![Watches](https://img.shields.io/github/watchers/0x19950610/localize_and_translate?style=social)](https://github.com/0x19950610/localize_and_translate/) 
 * [![Plugin](https://img.shields.io/badge/Get%20library-pub-blue)](https://pub.dev/packages/localize_and_translate) &nbsp; [![Example](https://img.shields.io/badge/Example-Ex-success)](https://pub.dev/packages/localize_and_translate#-example-tab-)
 
 ## My Plugins
