@@ -2,6 +2,11 @@
 
 * Improvements
 
+## 1.2.0
+
+* Performance Improvements
+* Docs Improvements
+
 ## 1.1.1+6
 
 * add isDirectionRTL method

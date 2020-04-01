@@ -1,9 +1,9 @@
 # localize_and_translate
-localization and translation was never easier, simple way to translate your flutter apps and make it international
+Flutter Localization In Human Way
 
 ## Screenshots
 
-<img src="https://github.com/0x19950610/localize_and_translate/blob/master/screenshot1.png?raw=true" alt="screenshot" width="200"/><span>  </span><img src="https://github.com/0x19950610/localize_and_translate/blob/master/screenshot2.png?raw=true" alt="screenshot" width="200"/>
+<img src="https://github.com/msayed-net/localize_and_translate/blob/master/screenshot1.png?raw=true" alt="screenshot" width="200"/><span>  </span><img src="https://github.com/msayed-net/localize_and_translate/blob/master/screenshot2.png?raw=true" alt="screenshot" width="200"/>
 
 ## Methods
 
@@ -19,7 +19,7 @@ localization and translation was never easier, simple way to translate your flut
 
 ## How To Use
 
-1. add `localize_and_translate: any` as dependencies in `pubspec.yaml` 
+1. add `localize_and_translate: <latest>` as dependency in `pubspec.yaml` 
 2. run `flutter pub get` into app folder
 3. add `.json` translation files as assets
 
@@ -29,6 +29,7 @@ localization and translation was never easier, simple way to translate your flut
 ``` json
 {
   "appTitle" : "Example",
+  "buttonTitle": "العربية", 
   "textArea" : "Thisi is just a test text",
 }
 ```
@@ -36,54 +37,33 @@ localization and translation was never easier, simple way to translate your flut
 ``` json
 {
   "appTitle" : "تجربة",
+  "buttonTitle": "English", 
   "textArea" : "هذا مجرد نموذج للتأكد من اداء الاداة",
 }
 ```
 
-* define them as assets into pubspec.yaml
+* define them as assets in pubspec.yaml
 
 ``` yaml
 flutter:
   assets:
-
     - assets/langs/en.json
     - assets/langs/ar.json
 
 ```
 
 * run `flutter pub get` 
+
 04. add imports to main.dart
 
 ``` dart
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:localize_and_translate/localize_and_translate.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';`
 ```
 
 5. wrap app entry into `LocalizedApp()` 
 __** make sure you define it's child into different place "NOT INSIDE" **__
-
-``` dart
-  runApp(
-    LocalizedApp(
-      child: MyApp(),
-    ),
-  );
-```
-
 6. convert your `main()` method to async, we will need next
-
-``` dart
-Future<void> main() async {
-  runApp(
-    LocalizedApp(
-      child: MyApp(),
-    ),
-  );
-}
-```
-
 7. add `WidgetsFlutterBinding.ensureInitialized();` at very first of `main()` 
 8. inside `main()` define: Languages + Root dir, then call `await translator.init();` 
 
@@ -119,12 +99,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Home(), // re Route
-      localizationsDelegates: [ // Android + iOS Delegates 
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-        DefaultCupertinoLocalizations.delegate,
-      ],
+      localizationsDelegates: translator.delegates, // Android + iOS Delegates
       locale: translator.locale, // active locale
       supportedLocales: translator.locals(), // locals list
     );
@@ -133,8 +108,8 @@ class _MyAppState extends State<MyApp> {
 ```
 
 12. Enjoy
-* we use `translate(word)` 
-* `setNewLanguage(languageCode)` : and it's parameters
+* we use `translate("appTitle")` 
+* `setNewLanguage("en")` : and it's parameters
 
 ``` dart
 class Home extends StatefulWidget {
@@ -195,18 +170,23 @@ class _HomeState extends State<Home> {
 ## Complete Example
 
 * [Pub](https://pub.dev/packages/localize_and_translate#-example-tab-)
-* [Github](https://github.com/0x19950610/localize_and_translate/tree/master/example)
+* [Github](https://github.com/msayed-net/localize_and_translate/tree/master/example)
+
+## Known Issues
+
+* Not working with flutter version < 1.12.13
 
 ## Author
 
 [![Mohamed Sayed](./logo.png)](https://msayed.net)
 
-* [![Fork](https://img.shields.io/github/forks/0x19950610/localize_and_translate?style=social)](https://github.com/0x19950610/localize_and_translate/fork) &nbsp; [![Star](https://img.shields.io/github/stars/0x19950610/localize_and_translate?style=social)](https://github.com/0x19950610/localize_and_translate/stargazers) &nbsp; [![Watches](https://img.shields.io/github/watchers/0x19950610/localize_and_translate?style=social)](https://github.com/0x19950610/localize_and_translate/) 
+* [![Fork](https://img.shields.io/github/forks/msayed-net/localize_and_translate?style=social)](https://github.com/msayed-net/localize_and_translate/fork) &nbsp; [![Star](https://img.shields.io/github/stars/msayed-net/localize_and_translate?style=social)](https://github.com/msayed-net/localize_and_translate/stargazers) &nbsp; [![Watches](https://img.shields.io/github/watchers/msayed-net/localize_and_translate?style=social)](https://github.com/msayed-net/localize_and_translate/) 
 * [![Plugin](https://img.shields.io/badge/Get%20library-pub-blue)](https://pub.dev/packages/localize_and_translate) &nbsp; [![Example](https://img.shields.io/badge/Example-Ex-success)](https://pub.dev/packages/localize_and_translate#-example-tab-)
 
 ## My Plugins
 
 * [localize_and_translate](https://pub.dev/packages/localize_and_translate)
-* [user_auth](https://pub.dev/packages/user_auth)
 * [print_color](https://pub.dev/packages/print_color) 
+* [user_auth](https://pub.dev/packages/user_auth)
+* [flutter_hex_color](https://pub.dev/packages/flutter_hex_color) 
 

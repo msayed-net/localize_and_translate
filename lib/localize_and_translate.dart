@@ -1,7 +1,9 @@
 import 'dart:convert';
+import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart' as intl;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 List<String> LIST_OF_LANGS = [];
@@ -11,6 +13,16 @@ class LocalizeAndTranslate {
   // ---- Config ---- //
   Locale _locale;
   Map<dynamic, dynamic> _values;
+
+  ///------------------------------------------------
+  /// delegatess
+  ///------------------------------------------------
+  Iterable<LocalizationsDelegate> delegates = [
+    GlobalMaterialLocalizations.delegate,
+    GlobalWidgetsLocalizations.delegate,
+    GlobalCupertinoLocalizations.delegate,
+    DefaultCupertinoLocalizations.delegate,
+  ];
 
   ///------------------------------------------------
   /// Locals List
@@ -90,9 +102,7 @@ class LocalizedApp extends StatefulWidget {
   LocalizedApp({this.child});
 
   static restart(BuildContext context) {
-    final _LocalizedAppState state = context.ancestorStateOfType(
-      const TypeMatcher<_LocalizedAppState>(),
-    );
+    final _LocalizedAppState state = context.findAncestorStateOfType();
     state.restart();
   }
 
