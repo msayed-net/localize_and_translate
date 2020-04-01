@@ -2,7 +2,7 @@
 
 * Improvements
 
-## 1.2.0
+## 1.2.0 | 1.2.1
 
 * Performance Improvements
 * Docs Improvements

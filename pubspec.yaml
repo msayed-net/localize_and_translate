@@ -1,6 +1,6 @@
 name: localize_and_translate
-description: Flutter Localization In Human Way
-version: 1.2.0
+description: Flutter Localization In Human Way, Help with localizing your app 
+version: 1.2.1
 homepage: https://github.com/msayed-net/localize_and_translate
 
 environment:
