@@ -13,6 +13,7 @@ Flutter Localization In Human Way
 | `locale` |active Locale |
 | `init()` |initialize things, before runApp() |
 | `translate('word')` |word translation |
+| `googleTranslate('word', from: 'en', to: 'ar')` |google translate |
 | `setNewLanguage(context,'en',restart: true, remember: true,)` |change language |
 | `locals()` |locales list |
 | `isDirectionRTL()` |is Direction RTL check |
@@ -109,6 +110,7 @@ class _MyAppState extends State<MyApp> {
 
 12. Enjoy
 * we use `translate("appTitle")` 
+* we use `googleTranslate("test", from: 'en', to: 'ar')` 
 * `setNewLanguage("en")` : and it's parameters
 
 ``` dart
@@ -118,6 +120,29 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  String testText =
+      translator.currentLanguage == 'ar' ? 'جار الترجمة' : 'Translating..';
+
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(Duration.zero, () async {
+      translator.currentLanguage == 'ar'
+          ? testText = await translator.googleTranslate(
+              'This text translated using google translate',
+              from: 'en',
+              to: 'ar',
+            )
+          : testText = await translator.googleTranslate(
+              'هذا النص ترجم باستخدام ترجمة جوجل',
+              from: 'ar',
+              to: 'en',
+            );
+
+      setState(() {});
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -130,34 +155,29 @@ class _HomeState extends State<Home> {
         width: double.infinity,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             SizedBox(height: 50),
             Text(
-              translator.translate('textArea'), // Translation
+              translator.translate('textArea'),
+              textAlign: TextAlign.center,
               style: TextStyle(fontSize: 35),
             ),
-            SizedBox(height: 150),
-            OutlineButton(
-              onPressed: () { // setNewLanguage 'ar'
-                translator.setNewLanguage(
-                  context,
-                  newLanguage: 'ar',
-                  remember: true,
-                  restart: true,
-                );
-              },
-              child: Text('العربية'),
+            Text(
+              testText,
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 35),
             ),
             OutlineButton(
-              onPressed: () { // setNewLanguage 'en'
+              onPressed: () {
                 translator.setNewLanguage(
                   context,
-                  newLanguage: 'en',
+                  newLanguage: translator.currentLanguage == 'ar' ? 'en' : 'ar',
                   remember: true,
                   restart: true,
                 );
               },
-              child: Text('English'),
+              child: Text(translator.translate('buttonTitle')),
             ),
           ],
         ),
@@ -165,6 +185,7 @@ class _HomeState extends State<Home> {
     );
   }
 }
+
 ```
 
 ## Complete Example

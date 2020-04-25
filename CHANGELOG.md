@@ -2,6 +2,10 @@
 
 * Improvements
 
+## 2.0.0
+
+* googleTranslate() added
+
 ## 1.2.0 | 1.2.1
 
 * Performance Improvements

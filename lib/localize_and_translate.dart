@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:translator/translator.dart';
 
 List<String> LIST_OF_LANGS = [];
 String LANGS_DIR;
@@ -38,6 +39,23 @@ class LocalizeAndTranslate {
     return (_values == null || _values[key] == null)
         ? '404 : $key'
         : _values[key];
+  }
+
+  ///------------------------------------------------
+  /// Transle : [key]
+  ///------------------------------------------------
+  Future<String> googleTranslate(
+    String key, {
+    @required String from,
+    @required String to,
+  }) async {
+    try {
+      final trans = new GoogleTranslator();
+      String text = await trans.translate(key, from: from, to: to);
+      return text;
+    } catch (e) {
+      return 'Error';
+    }
   }
 
   get currentLanguage =>
