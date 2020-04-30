@@ -14,7 +14,7 @@ Flutter Localization In Human Way
 | `init()` |initialize things, before runApp() |
 | `translate('word')` |word translation |
 | `googleTranslate('word', from: 'en', to: 'ar')` |google translate |
-| `setNewLanguage(context,'en',restart: true, remember: true,)` |change language |
+| `setNewLanguage(context,newLanguage:'en',restart: true, remember: true,)` |change language |
 | `locals()` |locales list |
 | `isDirectionRTL()` |is Direction RTL check |
 
