@@ -54,7 +54,7 @@ class LocalizeAndTranslate {
       String text = await trans.translate(key, from: from, to: to);
       return text;
     } catch (e) {
-      return 'Error';
+      return key;
     }
   }
 
