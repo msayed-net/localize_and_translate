@@ -2,7 +2,7 @@
 
 * Improvements
 
-## 2.0.0 | 2.0.1 | 2.0.2 | 2.03
+## 2.0.0 | 2.0.1 | 2.0.2 | 2.0.3
 
 * googleTranslate() added
 * in error, return given key
