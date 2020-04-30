@@ -2,10 +2,11 @@
 
 * Improvements
 
-## 2.0.0 | 2.0.1
+## 2.0.0 | 2.0.1 | 2.0.2
 
 * googleTranslate() added
 * in error, return given key
+* docs
 
 ## 1.2.0 | 1.2.1
 

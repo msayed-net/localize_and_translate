@@ -71,7 +71,7 @@ __** make sure you define it's child into different place "NOT INSIDE" **__
 * so now your `main()` should look like this
 
 ``` dart
-Future<void> main() async {
+main() async {
   // if your flutter > 1.7.8 :  ensure flutter activated
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -127,18 +127,11 @@ class _HomeState extends State<Home> {
   void initState() {
     super.initState();
     Future.delayed(Duration.zero, () async {
-      translator.currentLanguage == 'ar'
-          ? testText = await translator.googleTranslate(
-              'This text translated using google translate',
-              from: 'en',
-              to: 'ar',
-            )
-          : testText = await translator.googleTranslate(
-              'هذا النص ترجم باستخدام ترجمة جوجل',
-              from: 'ar',
-              to: 'en',
-            );
-
+      testText = await translator.googleTranslate(
+        testText,
+        from: 'en',
+        to: translator.currentLanguage,
+      );
       setState(() {});
     });
   }

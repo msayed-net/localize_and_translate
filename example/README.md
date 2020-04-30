@@ -4,7 +4,7 @@
 import 'package:flutter/material.dart';
 import 'package:localize_and_translate/localize_and_translate.dart';
 
-Future<void> main() async {
+main() async {
   // if your flutter > 1.7.8 :  ensure flutter activated
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -42,25 +42,17 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  String testText =
-      translator.currentLanguage == 'ar' ? 'جار الترجمة' : 'Translating..';
+  String testText = 'test';
 
   @override
   void initState() {
     super.initState();
     Future.delayed(Duration.zero, () async {
-      translator.currentLanguage == 'ar'
-          ? testText = await translator.googleTranslate(
-              'This text translated using google translate',
-              from: 'en',
-              to: 'ar',
-            )
-          : testText = await translator.googleTranslate(
-              'هذا النص ترجم باستخدام ترجمة جوجل',
-              from: 'ar',
-              to: 'en',
-            );
-
+      testText = await translator.googleTranslate(
+        testText,
+        from: 'en',
+        to: translator.currentLanguage,
+      );
       setState(() {});
     });
   }
@@ -107,5 +99,6 @@ class _HomeState extends State<Home> {
     );
   }
 }
+
 
 ```
