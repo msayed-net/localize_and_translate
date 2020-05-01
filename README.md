@@ -9,7 +9,7 @@ Flutter Localization In Human Way
 
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=nfDYussovfQ
 " target="_blank"><img src="http://img.youtube.com/vi/nfDYussovfQ/0.jpg" 
-alt="localize_and_translate video tutorial (arabic)" width="640" height="360"/></a>
+alt="localize_and_translate video tutorial (arabic)" width="640" height="460"/></a>
 
 ## Methods
 
