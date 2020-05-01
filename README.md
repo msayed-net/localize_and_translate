@@ -11,6 +11,8 @@ Flutter Localization In Human Way
 " target="_blank"><img src="http://img.youtube.com/vi/nfDYussovfQ/0.jpg" 
 alt="localize_and_translate video tutorial (arabic)" width="640" height="460"/></a>
 
+* Link :[localize_and_translate](http://www.youtube.com/watch?feature=player_embedded&v=nfDYussovfQ)
+
 ## Methods
 
 | Method        | Job           |
