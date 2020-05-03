@@ -68,20 +68,16 @@ class LocalizeAndTranslate {
       if (prefs.getString('currentLang') != null) {
         _locale = Locale(prefs.getString('currentLang'), "");
       }
-      await initLanguage(LIST_OF_LANGS[0]);
+      await initLanguage();
     }
     return null;
   }
 
-  Future<Null> initLanguage(newLanguage) async {
-    if (newLanguage == null || newLanguage == "") {
-      newLanguage = _locale == null ? LIST_OF_LANGS[0] : _locale.languageCode;
-    }
-
-    _locale = Locale(newLanguage, "");
+  Future<Null> initLanguage() async {
+    _locale == null ? _locale = Locale(LIST_OF_LANGS[0]) : null;
 
     String content = await rootBundle.loadString(
-      LANGS_DIR + "$newLanguage.json",
+      LANGS_DIR + "${_locale.languageCode}.json",
     );
     _values = json.decode(content);
 

@@ -9,11 +9,7 @@ main() async {
   LANGS_DIR = 'assets/langs/'; // define directory
   await translator.init(); // intialize
 
-  runApp(
-    LocalizedApp(
-      child: MyApp(),
-    ),
-  );
+  runApp(LocalizedApp(child: MyApp()));
 }
 
 class MyApp extends StatefulWidget {
