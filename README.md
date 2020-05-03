@@ -5,13 +5,11 @@ Flutter Localization In Human Way
 
 <img src="https://github.com/msayed-net/localize_and_translate/blob/master/screenshot1.png?raw=true" alt="screenshot" width="200"/><span>  </span><img src="https://github.com/msayed-net/localize_and_translate/blob/master/screenshot2.png?raw=true" alt="screenshot" width="200"/>
 
-## Video Tutorial (Arabic)
+## Video Tutorial
 
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=nfDYussovfQ
-" target="_blank"><img src="http://img.youtube.com/vi/nfDYussovfQ/0.jpg" 
-alt="localize_and_translate video tutorial (arabic)" width="640" height="460"/></a>
+* Arabic :[localize_and_translate](http://www.youtube.com/watch?feature=player_embedded&v=nfDYussovfQ)
 
-* Link :[localize_and_translate](http://www.youtube.com/watch?feature=player_embedded&v=nfDYussovfQ)
+[![Alt text](https://img.youtube.com/vi/nfDYussovfQ/0.jpg)](https://www.youtube.com/watch?v=nfDYussovfQ)
 
 ## Methods
 
