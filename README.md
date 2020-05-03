@@ -7,7 +7,7 @@ Flutter Localization In Human Way
 
 ## Video Tutorial
 
-* Arabic :[localize_and_translate](http://www.youtube.com/watch?feature=player_embedded&v=nfDYussovfQ)
+* Arabic : [nfDYussovfQ](https://www.youtube.com/watch?feature=player_embedded&v=nfDYussovfQ)
 
 [![Alt text](https://img.youtube.com/vi/nfDYussovfQ/0.jpg)](https://www.youtube.com/watch?v=nfDYussovfQ)
 
