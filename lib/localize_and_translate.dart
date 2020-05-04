@@ -58,10 +58,20 @@ class LocalizeAndTranslate {
     }
   }
 
-  get currentLanguage =>
+  ///------------------------------------------------
+  /// Active Language Code (String)
+  ///------------------------------------------------
+  String get currentLanguage =>
       _locale == null ? LIST_OF_LANGS[0] : _locale.languageCode;
-  get locale => _locale;
 
+  ///------------------------------------------------
+  /// Active Locale
+  ///------------------------------------------------
+  Locale get locale => _locale;
+
+  ///------------------------------------------------
+  /// Initialize Plugin
+  ///------------------------------------------------
   Future<Null> init([String lang]) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     if (_locale == null) {
@@ -73,6 +83,9 @@ class LocalizeAndTranslate {
     return null;
   }
 
+  ///------------------------------------------------
+  /// Initialize Active Language
+  ///------------------------------------------------
   Future<Null> initLanguage() async {
     _locale == null ? _locale = Locale(LIST_OF_LANGS[0]) : null;
 
@@ -84,6 +97,9 @@ class LocalizeAndTranslate {
     return null;
   }
 
+  ///------------------------------------------------
+  /// Change Language
+  ///------------------------------------------------
   Future<Null> setNewLanguage(
     context, {
     @required String newLanguage,
@@ -113,11 +129,17 @@ class LocalizeAndTranslate {
     return null;
   }
 
+  ///------------------------------------------------
+  /// Determine Active Layout (bool)
+  ///------------------------------------------------
   isDirectionRTL(BuildContext context) {
     return intl.Bidi.isRtlLanguage(
         Localizations.localeOf(context).languageCode);
   }
 
+  ///------------------------------------------------
+  /// Restart App
+  ///------------------------------------------------
   restart(BuildContext context) {
     LocalizedApp.restart(context);
   }
@@ -130,6 +152,9 @@ class LocalizedApp extends StatefulWidget {
 
   LocalizedApp({this.child});
 
+  ///------------------------------------------------
+  /// Restart App
+  ///------------------------------------------------
   static restart(BuildContext context) {
     final _LocalizedAppState state = context.findAncestorStateOfType();
     state.restart();
@@ -142,6 +167,9 @@ class LocalizedApp extends StatefulWidget {
 class _LocalizedAppState extends State<LocalizedApp> {
   Key key = new UniqueKey();
 
+  ///------------------------------------------------
+  /// Restart App
+  ///------------------------------------------------
   void restart() {
     this.setState(() {
       key = new UniqueKey();
