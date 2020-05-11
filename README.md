@@ -20,63 +20,49 @@ Flutter Localization In Human Way
 | `googleTranslate('word', from: 'en', to: 'ar')` |google translate |
 | `setNewLanguage(context,newLanguage:'en',restart: true, remember: true,)` |change language |
 | `isDirectionRTL()` |is Direction RTL check |
-| `currentLanguage` |active language code |
-| `locale` |active Locale |
-| `locals()` |locales list |
+| `currentLanguage` |Active language code |
+| `locale` |Active Locale |
+| `locals()` |Locales list |
+| `delegates` |Localization Delegates |
 
-## How To Use
+## Installation
 
-1. add `localize_and_translate: <latest>` as dependency in `pubspec.yaml` 
-2. run `flutter pub get` into app folder
-3. add `.json` translation files as assets
+* add `.json` translation files as assets
 
-* For example : `'assets/langs/ar.json'` | `'assets/langs/en.json'`
-* structure should look like
-
-``` json
-{
-  "appTitle" : "Example",
-  "buttonTitle": "العربية", 
-  "textArea" : "Thisi is just a test text",
-}
-```
+- For example : `'assets/langs/ar.json'` | `'assets/langs/en.json'`
+- structure should look like
 
 ``` json
 {
-  "appTitle" : "تجربة",
-  "buttonTitle": "English", 
-  "textArea" : "هذا مجرد نموذج للتأكد من اداء الاداة",
+  "appTitle" : "تطبيق",
+  "textArea" : "Thisi is just a test text"
 }
 ```
 
-* define them as assets in pubspec.yaml
+- define them as assets in pubspec.yaml
 
 ``` yaml
 flutter:
   assets:
     - assets/langs/en.json
     - assets/langs/ar.json
-
 ```
 
-* run `flutter pub get` 
+## Initialization
 
-04. add imports to main.dart
+- Add imports to main.dart
+- Make `main()` `async` | and do the following
+- Ensure flutter activated `WidgetsFlutterBinding.ensureInitialized()` 
+- Define languages list `LIST_OF_LANGS`
+- Define assets directory `LANGS_DIR`
+- Initialize `await translator.init();`
+- Inside `runApp()` wrap entry class with `LocalizedApp()`
+- Note : __** make sure you define it's child into different place "NOT INSIDE" **__
 
 ``` dart
 import 'package:flutter/material.dart';
 import 'package:localize_and_translate/localize_and_translate.dart';
-```
 
-5. wrap app entry into `LocalizedApp()` 
-__** make sure you define it's child into different place "NOT INSIDE" **__
-6. convert your `main()` method to async, we will need next
-7. add `WidgetsFlutterBinding.ensureInitialized();` at very first of `main()` 
-8. inside `main()` define: Languages + Root dir, then call `await translator.init();` 
-
-* so now your `main()` should look like this
-
-``` dart
 main() async {
   // if your flutter > 1.7.8 :  ensure flutter activated
   WidgetsFlutterBinding.ensureInitialized();
@@ -93,7 +79,7 @@ main() async {
 }
 ```
 
-11. define your `LocalizedApp()` child as `MaterialApp()` like this
+- `LocalizedApp()` child example -> `MaterialApp()`
 
 ``` dart
 class MyApp extends StatefulWidget {
@@ -105,16 +91,17 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Home(), // re Route
+      home: Home(),
       localizationsDelegates: translator.delegates, // Android + iOS Delegates
-      locale: translator.locale, // active locale
-      supportedLocales: translator.locals(), // locals list
+      locale: translator.locale, // Active locale
+      supportedLocales: translator.locals(), // Locals list
     );
   }
 }
 ```
 
-12. Enjoy
+## Usage
+
 * we use `translate("appTitle")` 
 * we use `googleTranslate("test", from: 'en', to: 'ar')` 
 * `setNewLanguage("en")` : and it's parameters

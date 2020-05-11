@@ -2,11 +2,11 @@
 
 * Improvements
 
-## 2.0.0 : 2.0.9
+## 2.0.0 : 2.0.10
 
 * googleTranslate() added
 * in error, return given key
-* docs
+* in not found case return given key
 * FIXs, docs, video docs
 
 ## 1.2.0 | 1.2.1

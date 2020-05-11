@@ -37,7 +37,7 @@ class LocalizeAndTranslate {
   ///------------------------------------------------
   String translate(String key) {
     return (_values == null || _values[key] == null)
-        ? '404 : $key'
+        ? '$key'
         : _values[key];
   }
 
