@@ -51,7 +51,7 @@ flutter:
 ## Initialization
 
 - Add imports to main.dart
-- Make `main()` `async` | and do the following
+- Make `main()` `async` and do the following
 - Ensure flutter activated `WidgetsFlutterBinding.ensureInitialized()` 
 - Define languages list `LIST_OF_LANGS`
 - Define assets directory `LANGS_DIR`
