@@ -1,4 +1,7 @@
 # localize_and_translate
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 Flutter Localization In Human Way
 
 ## Screenshots
@@ -198,3 +201,22 @@ class _HomeState extends State<Home> {
 * [user_auth](https://pub.dev/packages/user_auth)
 * [flutter_hex_color](https://pub.dev/packages/flutter_hex_color) 
 
+
+## Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://www.linkedin.com/in/mohamed-ahmed-2220b6121/"><img src="https://avatars1.githubusercontent.com/u/31937782?v=4" width="100px;" alt=""/><br /><sub><b>Mohamed Dawood</b></sub></a><br /><a href="https://github.com/msayed-net/localize_and_translate/commits?author=mo-ah-dawood" title="Code">💻</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
