@@ -21,7 +21,7 @@ packages:
       name: collection
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.14.11"
+    version: "1.14.12"
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -64,7 +64,7 @@ packages:
       name: intl
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.16.0"
+    version: "0.16.1"
   localize_and_translate:
     dependency: "direct main"
     description:
