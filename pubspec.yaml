@@ -15,7 +15,4 @@ dependencies:
   intl: ^0.16.0
   translator: ^0.1.4
 
-flutter:
-  plugin:
-    androidPackage: net.msayed.localize_and_translate
-    pluginClass: LocalizeAndTranslatePlugin
+
