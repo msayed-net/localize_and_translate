@@ -13,6 +13,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "msayed-net",
+      "name": "Mohamed Sayed",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/25801517?v=4",
+      "profile": "https://msayed.net",
+      "contributions": [
+        "maintenance"
+      ]
     }
   ],
   "contributorsPerLine": 7,
