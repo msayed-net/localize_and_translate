@@ -184,11 +184,6 @@ class _HomeState extends State<Home> {
 
 ```
 
-## Complete Example
-
-* [Pub](https://pub.dev/packages/localize_and_translate#-example-tab-)
-* [Github](https://github.com/msayed-net/localize_and_translate/tree/master/example)
-
 ## Known Issues
 
 * Not working with flutter version < 1.12.13
