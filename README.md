@@ -211,8 +211,8 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://www.linkedin.com/in/mohamed-ahmed-2220b6121/"><img src="https://avatars1.githubusercontent.com/u/31937782?v=4" width="100px;" alt=""/><br /><sub><b>Mohamed Dawood</b></sub></a><br /><a href="https://github.com/msayed-net/localize_and_translate/commits?author=mo-ah-dawood" title="Code">💻</a></td>
     <td align="center"><a href="https://msayed.net"><img src="https://avatars1.githubusercontent.com/u/25801517?v=4" width="100px;" alt=""/><br /><sub><b>Mohamed Sayed</b></sub></a><br /><a href="#maintenance-msayed-net" title="Maintenance">🚧</a></td>
+    <td align="center"><a href="https://www.linkedin.com/in/mohamed-ahmed-2220b6121/"><img src="https://avatars1.githubusercontent.com/u/31937782?v=4" width="100px;" alt=""/><br /><sub><b>Mohamed Dawood</b></sub></a><br /><a href="https://github.com/msayed-net/localize_and_translate/commits?author=mo-ah-dawood" title="Code">💻</a></td>
   </tr>
 </table>
 
