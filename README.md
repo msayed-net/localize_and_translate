@@ -5,6 +5,13 @@ Flutter Localization In Human Way
 [![Pub](https://img.shields.io/badge/Get%20library-pub-blue)](https://pub.dev/packages/localize_and_translate)
 [![Example](https://img.shields.io/badge/Example-Ex-success)](https://pub.dev/packages/localize_and_translate#-example-tab-)
 
+
+### Show some :heart: and star the repo
+
+[![Fork](https://img.shields.io/github/forks/msayed-net/localize_and_translate?style=social)](https://github.com/msayed-net/localize_and_translate/fork)
+[![Star](https://img.shields.io/github/stars/msayed-net/localize_and_translate?style=social)](https://github.com/msayed-net/localize_and_translate/stargazers)
+[![Watch](https://img.shields.io/github/watchers/msayed-net/localize_and_translate?style=social)](https://github.com/msayed-net/localize_and_translate/) 
+
 ## Screenshots
 
 <img src="https://github.com/msayed-net/localize_and_translate/blob/master/screenshot1.png?raw=true" alt="screenshot" width="200"/><span>  </span><img src="https://github.com/msayed-net/localize_and_translate/blob/master/screenshot2.png?raw=true" alt="screenshot" width="200"/>
@@ -183,20 +190,12 @@ class _HomeState extends State<Home> {
 
 ### Contributions
 
-* `translate()` accept keys [![mo-ah-dawood](https://img.shields.io/badge/Get%20library-pub-blue)](https://github.com/mo-ah-dawood)
-* Change template from plugin to package [![mo-ah-dawood](https://img.shields.io/badge/Get%20library-pub-blue)](https://github.com/mo-ah-dawood)
+* `translate()` accept keys : by [mo-ah-dawood](https://github.com/mo-ah-dawood)
+* Change template from plugin to package : by [mo-ah-dawood](https://github.com/mo-ah-dawood)
 
 ### Known Issues
 
 * Lowest Flutter Version (1.12.13)
-
-
-### Show some :heart: and star the repo
-
-[![Fork](https://img.shields.io/github/forks/msayed-net/localize_and_translate?style=social)](https://github.com/msayed-net/localize_and_translate/fork)
-[![Star](https://img.shields.io/github/stars/msayed-net/localize_and_translate?style=social)](https://github.com/msayed-net/localize_and_translate/stargazers)
-[![Watch](https://img.shields.io/github/watchers/msayed-net/localize_and_translate?style=social)](https://github.com/msayed-net/localize_and_translate/) 
-
 
 ## Project Created & Maintained By
 
@@ -210,4 +209,4 @@ Software Engineer | In :heart: with Flutter
 >
 > - [PayPal](https://www.paypal.me/msayednet/)
 
-## Notes : All Contibutions Are Welcomed
+## Note : All Contibutions Are Welcomed
