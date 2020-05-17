@@ -1,6 +1,6 @@
 # localize_and_translate
 
-Flutter Localization In Human Way
+Flutter localization abstract, Really simple
 
 [![Pub](https://img.shields.io/badge/Get%20library-pub-blue)](https://pub.dev/packages/localize_and_translate)
 [![Example](https://img.shields.io/badge/Example-Ex-success)](https://pub.dev/packages/localize_and_translate#-example-tab-)
