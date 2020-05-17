@@ -1,14 +1,10 @@
 # localize_and_translate
 
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
-
 Flutter Localization In Human Way
 
-[![Plugin](https://img.shields.io/badge/Get%20library-pub-blue)](https://pub.dev/packages/localize_and_translate) &nbsp; [![Example](https://img.shields.io/badge/Example-Ex-success)](https://pub.dev/packages/localize_and_translate#-example-tab-)
+[![Pub](https://img.shields.io/badge/Get%20library-pub-blue)](https://pub.dev/packages/localize_and_translate) &nbsp; [![Example](https://img.shields.io/badge/Example-Ex-success)](https://pub.dev/packages/localize_and_translate#-example-tab-)
 
-[![Fork](https://img.shields.io/github/forks/msayed-net/localize_and_translate?style=social)](https://github.com/msayed-net/localize_and_translate/fork) &nbsp; [![Star](https://img.shields.io/github/stars/msayed-net/localize_and_translate?style=social)](https://github.com/msayed-net/localize_and_translate/stargazers) &nbsp; [![Watches](https://img.shields.io/github/watchers/msayed-net/localize_and_translate?style=social)](https://github.com/msayed-net/localize_and_translate/) 
+[![Fork](https://img.shields.io/github/forks/msayed-net/localize_and_translate?style=social)](https://github.com/msayed-net/localize_and_translate/fork) &nbsp; [![Star](https://img.shields.io/github/stars/msayed-net/localize_and_translate?style=social)](https://github.com/msayed-net/localize_and_translate/stargazers) &nbsp; [![Watch](https://img.shields.io/github/watchers/msayed-net/localize_and_translate?style=social)](https://github.com/msayed-net/localize_and_translate/) 
 
 ## Screenshots
 
@@ -112,9 +108,9 @@ class _MyAppState extends State<MyApp> {
 
 ## Usage
 
-* we use `translate("appTitle")` 
-* we use `googleTranslate("test", from: 'en', to: 'ar')` 
-* `setNewLanguage("en")` : and it's parameters
+* use `translate("appTitle")` 
+* use `googleTranslate("test", from: 'en', to: 'ar')` 
+* use `setNewLanguage(context, newLanguage: 'ar', remember: true, restart: true);
 
 ``` dart
 class Home extends StatefulWidget {
