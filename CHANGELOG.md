@@ -2,9 +2,10 @@
 
 * Improvements
 
-## 2.0.0 : 2.1.0
+## 2.0.0 : 2.1.1
 
 * translate() enhance
+* translate() with keys
 * googleTranslate() added
 * in error, return given key
 * in not found case return given key

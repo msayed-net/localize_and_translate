@@ -181,6 +181,11 @@ class _HomeState extends State<Home> {
 
 ```
 
+### Contributions
+
+* `translate()` accept keys [![mo-ah-dawood](https://img.shields.io/badge/Get%20library-pub-blue)](https://github.com/mo-ah-dawood)
+* Change template from plugin to package [![mo-ah-dawood](https://img.shields.io/badge/Get%20library-pub-blue)](https://github.com/mo-ah-dawood)
+
 ### Known Issues
 
 * Lowest Flutter Version (1.12.13)
@@ -205,3 +210,4 @@ Software Engineer | In :heart: with Flutter
 >
 > - [PayPal](https://www.paypal.me/msayednet/)
 
+## Notes : All Contibutions Are Welcomed
