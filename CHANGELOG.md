@@ -2,6 +2,10 @@
 
 * Improvements
 
+## 2.0.1
+
+* Plugin -> Package
+
 ## 2.0.0 : 2.1.1
 
 * translate() enhance
