@@ -7,4 +7,4 @@ version:
   revision: 18cd7a3601bcffb36fdf2f679f763b5e827c2e8e
   channel: v1.12.13-hotfixes
 
-project_type: plugin
+project_type: package
