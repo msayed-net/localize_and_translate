@@ -35,19 +35,19 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  String testText = 'google translate test';
+  // String testText = 'google translate test';
 
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration.zero, () async {
-      testText = await translator.googleTranslate(
-        testText,
-        from: 'en',
-        to: translator.currentLanguage,
-      );
-      setState(() {});
-    });
+    // Future.delayed(Duration.zero, () async {
+    //   testText = await translator.googleTranslate(
+    //     testText,
+    //     from: 'en',
+    //     to: translator.currentLanguage,
+    //   );
+    //   setState(() {});
+    // });
   }
 
   @override
@@ -70,11 +70,11 @@ class _HomeState extends State<Home> {
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 35),
             ),
-            Text(
-              testText,
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 35),
-            ),
+            // Text(
+            //   testText,
+            //   textAlign: TextAlign.center,
+            //   style: TextStyle(fontSize: 35),
+            // ),
             OutlineButton(
               onPressed: () {
                 translator.setNewLanguage(

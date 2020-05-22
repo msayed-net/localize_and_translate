@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:http/http.dart' as http;
+import 'package:translator/translator.dart';
 
 List<String> LIST_OF_LANGS = [];
 String LANGS_DIR;
@@ -48,30 +48,19 @@ class LocalizeAndTranslate {
   ///------------------------------------------------
   /// Transle : [key] using Google Translate API
   ///------------------------------------------------
-  Future<String> googleTranslate(
-    String key, {
-    @required String from,
-    @required String to,
-  }) async {
-    try {
-      // final trans = new GoogleTranslator();
-      // String text = await trans.translate(key, from: from, to: to);
-      http.Response response = await http.get(
-        "https://translate.googleapis.com/translate_a/single?client=gtx&sl=" +
-            from +
-            "&tl=" +
-            to +
-            "&dt=t&q=" +
-            key,
-      );
-      String jsonReady = response.body.replaceAll('[', '').replaceAll(']', '');
-      String translated =
-          jsonReady.split(',')[0].replaceAll('"', '').replaceAll("'", '');
-      return translated ?? key;
-    } catch (e) {
-      return key;
-    }
-  }
+  // Future<String> googleTranslate(
+  //   String key, {
+  //   @required String from,
+  //   @required String to,
+  // }) async {
+  //   try {
+  //     final trans = new GoogleTranslator();
+  //     String text = await trans.translate(key, from: from, to: to);
+  //     return text ?? key;
+  //   } catch (e) {
+  //     return key;
+  //   }
+  // }
 
   ///------------------------------------------------
   /// Active Language Code (String)

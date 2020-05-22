@@ -2,9 +2,9 @@
 
 * Improvements
 
-## 2.2.0
+## 2.2.1
 
-* `googleTranslate()` : FIX 
+* `googleTranslate()` : Remove 
 
 ## 2.1.2
 
