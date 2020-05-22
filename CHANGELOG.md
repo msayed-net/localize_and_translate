@@ -2,6 +2,10 @@
 
 * Improvements
 
+## 2.1.3
+
+* Google Translate : if(null) return key
+
 ## 2.1.2
 
 * Plugin -> Package
