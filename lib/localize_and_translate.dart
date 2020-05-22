@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:translator/translator.dart';
+import 'package:http/http.dart' as http;
 
 List<String> LIST_OF_LANGS = [];
 String LANGS_DIR;
@@ -46,7 +46,7 @@ class LocalizeAndTranslate {
   }
 
   ///------------------------------------------------
-  /// Transle : [key]
+  /// Transle : [key] using Google Translate API
   ///------------------------------------------------
   Future<String> googleTranslate(
     String key, {
@@ -54,10 +54,20 @@ class LocalizeAndTranslate {
     @required String to,
   }) async {
     try {
-      final trans = new GoogleTranslator();
-      String text = await trans.translate(key, from: from, to: to);
-      if (text == null) text = key;
-      return text;
+      // final trans = new GoogleTranslator();
+      // String text = await trans.translate(key, from: from, to: to);
+      http.Response response = await http.get(
+        "https://translate.googleapis.com/translate_a/single?client=gtx&sl=" +
+            from +
+            "&tl=" +
+            to +
+            "&dt=t&q=" +
+            key,
+      );
+      String jsonReady = response.body.replaceAll('[', '').replaceAll(']', '');
+      String translated =
+          jsonReady.split(',')[0].replaceAll('"', '').replaceAll("'", '');
+      return translated ?? key;
     } catch (e) {
       return key;
     }
@@ -66,13 +76,12 @@ class LocalizeAndTranslate {
   ///------------------------------------------------
   /// Active Language Code (String)
   ///------------------------------------------------
-  String get currentLanguage =>
-      _locale == null ? LIST_OF_LANGS[0] : _locale.languageCode;
+  String get currentLanguage => _locale.languageCode ?? LIST_OF_LANGS[0];
 
   ///------------------------------------------------
   /// Active Locale
   ///------------------------------------------------
-  Locale get locale => _locale;
+  Locale get locale => _locale ?? Locale(LIST_OF_LANGS[0]);
 
   ///------------------------------------------------
   /// Initialize Plugin
@@ -82,6 +91,8 @@ class LocalizeAndTranslate {
     if (_locale == null) {
       if (prefs.getString('currentLang') != null) {
         _locale = Locale(prefs.getString('currentLang'), "");
+      } else {
+        _locale = Locale(LIST_OF_LANGS[0]);
       }
       await initLanguage();
     }
@@ -92,7 +103,9 @@ class LocalizeAndTranslate {
   /// Initialize Active Language
   ///------------------------------------------------
   Future<Null> initLanguage() async {
-    _locale == null ? _locale = Locale(LIST_OF_LANGS[0]) : null;
+    if (_locale == null) {
+      _locale = Locale(LIST_OF_LANGS[0]);
+    }
 
     String content = await rootBundle.loadString(
       LANGS_DIR + "${_locale.languageCode}.json",

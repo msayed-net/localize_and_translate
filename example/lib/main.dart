@@ -35,7 +35,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  String testText = 'test';
+  String testText = 'google translate test';
 
   @override
   void initState() {

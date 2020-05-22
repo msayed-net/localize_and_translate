@@ -2,9 +2,9 @@
 
 * Improvements
 
-## 2.1.4
+## 2.2.0
 
-* Google Translate : if(null) return key
+* `googleTranslate()` : FIX 
 
 ## 2.1.2
 
