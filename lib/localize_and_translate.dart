@@ -56,7 +56,7 @@ class LocalizeAndTranslate {
     try {
       final trans = new GoogleTranslator();
       String text = await trans.translate(key, from: from, to: to);
-      return text;
+      return text ?? key;
     } catch (e) {
       return key;
     }
