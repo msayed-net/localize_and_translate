@@ -2,7 +2,7 @@
 
 * Improvements
 
-## 2.1.3
+## 2.1.4
 
 * Google Translate : if(null) return key
 
