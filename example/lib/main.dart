@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:localize_and_translate/localize_and_translate.dart';
-
+import 'package:provider/provider.dart';
 main() async {
   // if your flutter > 1.7.8 :  ensure flutter activated
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,7 +23,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Home(),
       localizationsDelegates: translator.delegates,
-      locale: translator.locale,
+      locale: Provider.of<LocalizeAndTranslate>(context).locale,
       supportedLocales: translator.locals(),
     );
   }

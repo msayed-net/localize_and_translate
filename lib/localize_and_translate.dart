@@ -4,13 +4,14 @@ import 'package:intl/intl.dart' as intl;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:translator/translator.dart';
 
 List<String> LIST_OF_LANGS = [];
 String LANGS_DIR;
 
-class LocalizeAndTranslate {
+class LocalizeAndTranslate with ChangeNotifier {
   // ---- Config ---- //
   Locale _locale;
   Map<dynamic, dynamic> _values;
@@ -129,10 +130,10 @@ class LocalizeAndTranslate {
       await prefs.setString('currentLang', newLanguage);
     }
 
-    if (restart) {
-      LocalizedApp.restart(context);
-    }
-
+    // if (restart) {
+    //   LocalizedApp.restart(context);
+    // }
+    notifyListeners();
     return null;
   }
 
@@ -147,9 +148,9 @@ class LocalizeAndTranslate {
   ///------------------------------------------------
   /// Restart App
   ///------------------------------------------------
-  restart(BuildContext context) {
-    LocalizedApp.restart(context);
-  }
+  // restart(BuildContext context) {
+  //   LocalizedApp.restart(context);
+  // }
 }
 
 LocalizeAndTranslate translator = new LocalizeAndTranslate();
@@ -162,10 +163,10 @@ class LocalizedApp extends StatefulWidget {
   ///------------------------------------------------
   /// Restart App
   ///------------------------------------------------
-  static restart(BuildContext context) {
-    final _LocalizedAppState state = context.findAncestorStateOfType();
-    state.restart();
-  }
+  // static restart(BuildContext context) {
+  //   final _LocalizedAppState state = context.findAncestorStateOfType();
+  //   state.restart();
+  // }
 
   @override
   _LocalizedAppState createState() => _LocalizedAppState();
@@ -177,15 +178,16 @@ class _LocalizedAppState extends State<LocalizedApp> {
   ///------------------------------------------------
   /// Restart App
   ///------------------------------------------------
-  void restart() {
-    this.setState(() {
-      key = new UniqueKey();
-    });
-  }
+  // void restart() {
+  //   this.setState(() {
+  //     key = new UniqueKey();
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
-    return new Container(
+    return new ChangeNotifierProvider.value(
+      value: translator,
       key: key,
       child: widget.child,
     );

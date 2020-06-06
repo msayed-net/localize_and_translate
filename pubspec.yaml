@@ -15,5 +15,4 @@ dependencies:
   intl: ^0.16.0
   # http: ^0.12.1
   translator: ^0.1.4
-
-
+  provider: ^4.1.3
