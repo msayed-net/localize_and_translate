@@ -5,32 +5,91 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:translator/translator.dart';
-
-List<String> LIST_OF_LANGS = [];
-String LANGS_DIR;
+import 'package:http/http.dart' as http;
 
 class LocalizeAndTranslate {
-  // ---- Config ---- //
+  ///------------------------------------------------
+  /// Config
+  ///------------------------------------------------
+  List<String> langsList = [];
+  String assetsDir;
+  String _apiKeyGoogle = '';
   Locale _locale;
-  Map<dynamic, dynamic> _values;
+  Map<String, dynamic> _values;
+  SharedPreferences prefs;
 
   ///------------------------------------------------
-  /// delegatess
+  /// Initialize Plugin
   ///------------------------------------------------
-  Iterable<LocalizationsDelegate> delegates = [
-    GlobalMaterialLocalizations.delegate,
-    GlobalWidgetsLocalizations.delegate,
-    GlobalCupertinoLocalizations.delegate,
-    DefaultCupertinoLocalizations.delegate,
-  ];
+  Future<Null> init({
+    String language,
+    @required List<String> languagesList,
+    @required assetsDirectory,
+    Map<String, String> valuesAsMap, // Later
+    String apiKeyGoogle,
+  }) async {
+    if (prefs == null) {
+      prefs = await SharedPreferences.getInstance();
+    }
 
-  ///------------------------------------------------
-  /// Locals List
-  ///------------------------------------------------
-  Iterable<Locale> locals() => LIST_OF_LANGS.map<Locale>(
-        (lang) => new Locale(lang, ''),
+    if (apiKeyGoogle != null) {
+      _apiKeyGoogle = apiKeyGoogle;
+    }
+
+    // ---- Lang List ---- //
+    langsList = languagesList ?? ['en', 'ar'];
+
+    // ---- Locale ---- //
+    if (_locale == null) {
+      if (language != null) {
+        _locale = Locale(language);
+      } else if (prefs.getString('currentLang') != null) {
+        _locale = Locale(prefs.getString('currentLang'), "");
+      } else {
+        _locale = Locale(langsList[0]);
+      }
+    }
+
+    // ---- Null Check ---- //
+    if (assetsDirectory == null && valuesAsMap == null) {
+      assert(
+        assetsDirectory != null || valuesAsMap != null,
+        '--You must define assetsDirectory or valuesAsMap',
       );
+      return null;
+    }
+
+    // ---- Lang Values ---- //
+    if (assetsDirectory != null) {
+      assetsDir = assetsDirectory;
+      await initLanguage(_locale.languageCode);
+    } else {
+      _values = valuesAsMap;
+    }
+
+    // ---- Config ---- //
+    print(
+      '--LocalizeAndTranslate : LangList$langsList | Dir($assetsDir) | Active(${_locale.languageCode}.json)',
+    );
+    print(
+      '--LocalizeAndTranslate : Google(${apiKeyGoogle != null})',
+    );
+
+    return null;
+  }
+
+  ///------------------------------------------------
+  /// Initialize Active Language Values
+  ///------------------------------------------------
+  Future<Null> initLanguage(String languageCode) async {
+    String content = await rootBundle.loadString(
+      assetsDir + "$languageCode.json",
+    );
+
+    _values = json.decode(content);
+
+    return null;
+  }
 
   ///------------------------------------------------
   /// Transle : [key]
@@ -46,62 +105,47 @@ class LocalizeAndTranslate {
   }
 
   ///------------------------------------------------
-  /// Transle : [key] using Google Translate API
+  /// Google Translate
   ///------------------------------------------------
-  // Future<String> googleTranslate(
-  //   String key, {
-  //   @required String from,
-  //   @required String to,
-  // }) async {
-  //   try {
-  //     final trans = new GoogleTranslator();
-  //     String text = await trans.translate(key, from: from, to: to);
-  //     return text ?? key;
-  //   } catch (e) {
-  //     return key;
-  //   }
-  // }
-
-  ///------------------------------------------------
-  /// Active Language Code (String)
-  ///------------------------------------------------
-  String get currentLanguage => _locale.languageCode ?? LIST_OF_LANGS[0];
-
-  ///------------------------------------------------
-  /// Active Locale
-  ///------------------------------------------------
-  Locale get locale => _locale ?? Locale(LIST_OF_LANGS[0]);
-
-  ///------------------------------------------------
-  /// Initialize Plugin
-  ///------------------------------------------------
-  Future<Null> init([String lang]) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    if (_locale == null) {
-      if (prefs.getString('currentLang') != null) {
-        _locale = Locale(prefs.getString('currentLang'), "");
-      } else {
-        _locale = Locale(LIST_OF_LANGS[0]);
+  Future<String> translateWithGoogle({
+    @required String key,
+    @required String from,
+    String to,
+  }) async {
+    try {
+      if (_apiKeyGoogle.isEmpty) {
+        print('--LocalizeAndTranslate : Google(false)');
+        return key;
       }
-      await initLanguage();
+
+      if (to == null) to = _locale.languageCode;
+
+      var response = await http.post(
+        'https://translation.googleapis.com/language/translate/v2',
+        headers: {
+          'Authorization': 'Bearer $_apiKeyGoogle',
+        },
+        body: {
+          "q": key,
+          "source": from,
+          "target": to,
+          "format": "text",
+        },
+      ).timeout(Duration(seconds: 10));
+
+      var data = json.decode(response.body);
+
+      String text = key;
+      if (response.statusCode == 200) {
+        text = data['data']['translations']['translatedText'];
+      } else {
+        print(data);
+      }
+
+      return text;
+    } catch (e) {
+      return key;
     }
-    return null;
-  }
-
-  ///------------------------------------------------
-  /// Initialize Active Language
-  ///------------------------------------------------
-  Future<Null> initLanguage() async {
-    if (_locale == null) {
-      _locale = Locale(LIST_OF_LANGS[0]);
-    }
-
-    String content = await rootBundle.loadString(
-      LANGS_DIR + "${_locale.languageCode}.json",
-    );
-    _values = json.decode(content);
-
-    return null;
   }
 
   ///------------------------------------------------
@@ -114,18 +158,20 @@ class LocalizeAndTranslate {
     bool remember = true,
   }) async {
     if (newLanguage == null || newLanguage == "") {
-      newLanguage = _locale == null ? LIST_OF_LANGS[0] : _locale.languageCode;
+      newLanguage = _locale == null ? langsList[0] : _locale.languageCode;
     }
 
     _locale = Locale(newLanguage, "");
 
     String content = await rootBundle.loadString(
-      LANGS_DIR + "$newLanguage.json",
+      assetsDir + "$newLanguage.json",
     );
     _values = json.decode(content);
 
     if (remember) {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
+      if (prefs == null) {
+        prefs = await SharedPreferences.getInstance();
+      }
       await prefs.setString('currentLang', newLanguage);
     }
 
@@ -150,6 +196,33 @@ class LocalizeAndTranslate {
   restart(BuildContext context) {
     LocalizedApp.restart(context);
   }
+
+  ///------------------------------------------------
+  /// Active Language Code (String)
+  ///------------------------------------------------
+  String get currentLanguage => _locale.languageCode ?? langsList[0];
+
+  ///------------------------------------------------
+  /// Active Locale
+  ///------------------------------------------------
+  Locale get locale => _locale ?? Locale(langsList[0]);
+
+  ///------------------------------------------------
+  /// delegatess
+  ///------------------------------------------------
+  Iterable<LocalizationsDelegate> delegates = [
+    GlobalMaterialLocalizations.delegate,
+    GlobalWidgetsLocalizations.delegate,
+    GlobalCupertinoLocalizations.delegate,
+    DefaultCupertinoLocalizations.delegate,
+  ];
+
+  ///------------------------------------------------
+  /// Locals List
+  ///------------------------------------------------
+  Iterable<Locale> locals() => langsList.map<Locale>(
+        (lang) => new Locale(lang, ''),
+      );
 }
 
 LocalizeAndTranslate translator = new LocalizeAndTranslate();

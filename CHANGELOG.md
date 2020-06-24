@@ -2,6 +2,11 @@
 
 * Improvements
 
+## 3.0.0
+
+* Remove `LIST_OF_LANGS` & `LANGS_DIR`
+* `init()` now takes ``
+
 ## 2.2.1
 
 * `googleTranslate()` : Remove 

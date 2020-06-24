@@ -14,7 +14,7 @@ packages:
       name: collection
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.14.11"
+    version: "1.14.12"
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -57,14 +57,14 @@ packages:
       name: intl
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.16.0"
+    version: "0.16.1"
   localize_and_translate:
     dependency: "direct main"
     description:
       path: ".."
       relative: true
     source: path
-    version: "2.2.1"
+    version: "3.0.0"
   meta:
     dependency: transitive
     description:
@@ -140,13 +140,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0"
-  translator:
-    dependency: transitive
-    description:
-      name: translator
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.1.4"
   typed_data:
     dependency: transitive
     description:

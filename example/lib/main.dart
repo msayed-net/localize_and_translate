@@ -5,9 +5,11 @@ main() async {
   // if your flutter > 1.7.8 :  ensure flutter activated
   WidgetsFlutterBinding.ensureInitialized();
 
-  LIST_OF_LANGS = ['ar', 'en']; // define languages
-  LANGS_DIR = 'assets/langs/'; // define directory
-  await translator.init(); // intialize
+  await translator.init(
+    languagesList: <String>['en', 'ar'],
+    assetsDirectory: 'assets/langs/',
+    apiKeyGoogle: 'AIzaSyDTxMiiiVIfCiM31E1Rn_uzl-i5RZ8QS3g',
+  ); // intialize
 
   runApp(LocalizedApp(child: MyApp()));
 }
@@ -83,6 +85,15 @@ class _HomeState extends State<Home> {
                   remember: true,
                   restart: true,
                 );
+              },
+              child: Text(translator.translate('buttonTitle')),
+            ),
+            OutlineButton(
+              onPressed: () async {
+                print(await translator.translateWithGoogle(
+                  key: 'رجل',
+                  from: 'ar',
+                ));
               },
               child: Text(translator.translate('buttonTitle')),
             ),
