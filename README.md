@@ -48,7 +48,7 @@ Flutter localization abstract, Really simple
 ``` json
 {
   "appTitle" : "تطبيق",
-  "textArea" : "Thisi is just a test text"
+  "textArea" : "This is just a test text"
 }
 ```
 
@@ -117,7 +117,7 @@ class _MyAppState extends State<MyApp> {
 
 * use `translate("appTitle")` 
 * use `googleTranslate("test", from: 'en', to: 'ar')` 
-* use `setNewLanguage(context, newLanguage: 'ar', remember: true, restart: true);
+* use `setNewLanguage(context, newLanguage: 'ar', remember: true, restart: true);`
 
 ``` dart
 class Home extends StatefulWidget {
