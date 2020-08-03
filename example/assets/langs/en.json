@@ -1,5 +1,6 @@
 {
     "appTitle": "Example App",
     "buttonTitle": "العربية",
+    "googleTest": "Google Test", 
     "textArea": "This is just test text"
 }

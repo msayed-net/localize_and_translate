@@ -6,7 +6,8 @@ main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await translator.init(
-    languagesList: <String>['en', 'ar'],
+    localeDefault: LocalizationDefaultType.device,
+    languagesList: <String>['ar', 'en'],
     assetsDirectory: 'assets/langs/',
     apiKeyGoogle: 'AIzaSyDTxMiiiVIfCiM31E1Rn_uzl-i5RZ8QS3g',
   ); // intialize
@@ -42,14 +43,6 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
-    // Future.delayed(Duration.zero, () async {
-    //   testText = await translator.googleTranslate(
-    //     testText,
-    //     from: 'en',
-    //     to: translator.currentLanguage,
-    //   );
-    //   setState(() {});
-    // });
   }
 
   @override
@@ -72,11 +65,6 @@ class _HomeState extends State<Home> {
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 35),
             ),
-            // Text(
-            //   testText,
-            //   textAlign: TextAlign.center,
-            //   style: TextStyle(fontSize: 35),
-            // ),
             OutlineButton(
               onPressed: () {
                 translator.setNewLanguage(
@@ -95,7 +83,7 @@ class _HomeState extends State<Home> {
                   from: 'ar',
                 ));
               },
-              child: Text(translator.translate('buttonTitle')),
+              child: Text(translator.translate('googleTest')),
             ),
           ],
         ),

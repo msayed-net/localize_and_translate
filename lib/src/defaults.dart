@@ -1,0 +1,1 @@
+enum LocalizationDefaultType { device, asDefined }
