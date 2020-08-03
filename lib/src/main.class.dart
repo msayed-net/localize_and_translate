@@ -153,7 +153,7 @@ class LocalizeAndTranslate {
       if (response.statusCode == 200) {
         text = data['data']['translations']['translatedText'];
       } else {
-        print(data);
+        print('--LocalizeAndTranslate : $data');
       }
 
       return text;
