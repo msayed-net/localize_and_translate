@@ -70,7 +70,6 @@ class LocalizeAndTranslate {
       }
     }
 
-    // ---- Null Check ---- //
     if (assetsDirectory == null && valuesAsMap == null) {
       assert(
         assetsDirectory != null || valuesAsMap != null,
@@ -79,7 +78,6 @@ class LocalizeAndTranslate {
       return null;
     }
 
-    // ---- Lang Values ---- //
     if (assetsDirectory != null) {
       assetsDir = assetsDirectory;
       await initLanguage(_locale.languageCode);
@@ -87,7 +85,6 @@ class LocalizeAndTranslate {
       _values = valuesAsMap;
     }
 
-    // ---- Config ---- //
     print(
       '--LocalizeAndTranslate : Google(${apiKeyGoogle != null}) | LangList$langsList | Dir($assetsDir) | Active(${_locale.languageCode}.json)',
     );
