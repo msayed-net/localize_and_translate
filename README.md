@@ -186,7 +186,7 @@ class _HomeState extends State<Home> {
 
 ## Project Created & Maintained By
 ### [![Mohamed Sayed](./logo.png)](https://msayed.net)
-Software Engineer | In :heart: with Flutter
+Software Engineer | In :heart:  with Flutter
 
 
 ## Note : All Contibutions Are Welcomed
