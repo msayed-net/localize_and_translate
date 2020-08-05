@@ -30,7 +30,6 @@ Flutter localization in easy steps, really simple
 | `delegates` |Localization Delegates |
 
 ### Installation
-
 * add `.json` translation files as assets
 
 - For example : `'assets/langs/ar.json'` | `'assets/langs/en.json'`
@@ -38,8 +37,10 @@ Flutter localization in easy steps, really simple
 
 ``` json
 {
-  "appTitle" : "تطبيق",
-  "textArea" : "This is just a test text"
+    "appTitle": "تطبيق تجريبى", 
+    "buttonTitle": "English", 
+    "googleTest": "تجربة ترجمة جوجل", 
+    "textArea": "هذا مجرد نموذج للتأكد من اداء الأداة"
 }
 ```
 
@@ -53,15 +54,12 @@ flutter:
 ```
 
 ### Initialization
-
 - Add imports to main.dart
 - Make `main()` `async` and do the following
 - Ensure flutter activated `WidgetsFlutterBinding.ensureInitialized()` 
-- Define languages list `LIST_OF_LANGS`
-- Define assets directory `LANGS_DIR`
-- Initialize `await translator.init();`
+- Initialize `await translator.init();` with neccassry parameters
 - Inside `runApp()` wrap entry class with `LocalizedApp()`
-- Note : __** make sure you define it's child into different place "NOT INSIDE" **__
+- Note : make sure you define it's child into different place "NOT INSIDE"
 
 ``` dart
 import 'package:flutter/material.dart';
@@ -71,9 +69,12 @@ main() async {
   // if your flutter > 1.7.8 :  ensure flutter activated
   WidgetsFlutterBinding.ensureInitialized();
 
-  LIST_OF_LANGS = ['ar', 'en']; // define languages
-  LANGS_DIR = 'assets/langs/'; // define directory
-  await translator.init(); // intialize
+  await translator.init(
+    localeDefault: LocalizationDefaultType.device,
+    languagesList: <String>['ar', 'en'],
+    assetsDirectory: 'assets/langs/',
+    apiKeyGoogle: '<Key>', // NOT YET TESTED
+  );
 
   runApp(
     LocalizedApp(
@@ -111,28 +112,7 @@ class _MyAppState extends State<MyApp> {
 * use `setNewLanguage(context, newLanguage: 'ar', remember: true, restart: true);`
 
 ``` dart
-class Home extends StatefulWidget {
-  @override
-  _HomeState createState() => _HomeState();
-}
-
-class _HomeState extends State<Home> {
-  String testText =
-      translator.currentLanguage == 'ar' ? 'جار الترجمة' : 'Translating..';
-
-  @override
-  void initState() {
-    super.initState();
-    Future.delayed(Duration.zero, () async {
-      testText = await translator.googleTranslate(
-        testText,
-        from: 'en',
-        to: translator.currentLanguage,
-      );
-      setState(() {});
-    });
-  }
-
+class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -153,11 +133,6 @@ class _HomeState extends State<Home> {
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 35),
             ),
-            Text(
-              testText,
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 35),
-            ),
             OutlineButton(
               onPressed: () {
                 translator.setNewLanguage(
@@ -168,6 +143,15 @@ class _HomeState extends State<Home> {
                 );
               },
               child: Text(translator.translate('buttonTitle')),
+            ),
+            OutlineButton(
+              onPressed: () async {
+                print(await translator.translateWithGoogle(
+                  key: 'رجل',
+                  from: 'ar',
+                ));
+              },
+              child: Text(translator.translate('googleTest')),
             ),
           ],
         ),

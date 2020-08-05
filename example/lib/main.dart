@@ -9,7 +9,7 @@ main() async {
     localeDefault: LocalizationDefaultType.device,
     languagesList: <String>['ar', 'en'],
     assetsDirectory: 'assets/langs/',
-    apiKeyGoogle: 'AIzaSyDTxMiiiVIfCiM31E1Rn_uzl-i5RZ8QS3g',
+    apiKeyGoogle: '<Key>', // NOT YET TESTED
   ); // intialize
 
   runApp(LocalizedApp(child: MyApp()));
@@ -32,19 +32,7 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
-class Home extends StatefulWidget {
-  @override
-  _HomeState createState() => _HomeState();
-}
-
-class _HomeState extends State<Home> {
-  // String testText = 'google translate test';
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
+class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

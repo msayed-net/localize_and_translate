@@ -8,15 +8,14 @@ main() async {
   // if your flutter > 1.7.8 :  ensure flutter activated
   WidgetsFlutterBinding.ensureInitialized();
 
-  LIST_OF_LANGS = ['ar', 'en']; // define languages
-  LANGS_DIR = 'assets/langs/'; // define directory
-  await translator.init(); // intialize
+  await translator.init(
+    localeDefault: LocalizationDefaultType.device,
+    languagesList: <String>['ar', 'en'],
+    assetsDirectory: 'assets/langs/',
+    apiKeyGoogle: '<Key>', // NOT YET TESTED
+  ); // intialize
 
-  runApp(
-    LocalizedApp(
-      child: MyApp(),
-    ),
-  );
+  runApp(LocalizedApp(child: MyApp()));
 }
 
 class MyApp extends StatefulWidget {
@@ -36,27 +35,7 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
-class Home extends StatefulWidget {
-  @override
-  _HomeState createState() => _HomeState();
-}
-
-class _HomeState extends State<Home> {
-  String testText = 'test';
-
-  @override
-  void initState() {
-    super.initState();
-    Future.delayed(Duration.zero, () async {
-      testText = await translator.googleTranslate(
-        testText,
-        from: 'en',
-        to: translator.currentLanguage,
-      );
-      setState(() {});
-    });
-  }
-
+class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,11 +56,6 @@ class _HomeState extends State<Home> {
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 35),
             ),
-            Text(
-              testText,
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 35),
-            ),
             OutlineButton(
               onPressed: () {
                 translator.setNewLanguage(
@@ -93,12 +67,19 @@ class _HomeState extends State<Home> {
               },
               child: Text(translator.translate('buttonTitle')),
             ),
+            OutlineButton(
+              onPressed: () async {
+                print(await translator.translateWithGoogle(
+                  key: 'رجل',
+                  from: 'ar',
+                ));
+              },
+              child: Text(translator.translate('googleTest')),
+            ),
           ],
         ),
       ),
     );
   }
 }
-
-
 ```
