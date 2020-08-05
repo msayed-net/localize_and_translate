@@ -1,2 +1,2 @@
-export 'src/main.class.dart';
 export 'src/defaults.dart';
+export 'src/main.class.dart';

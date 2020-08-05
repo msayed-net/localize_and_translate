@@ -1,13 +1,14 @@
 import 'dart:convert';
+
 import 'package:devicelocale/devicelocale.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:intl/intl.dart' as intl;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart' as intl;
 import 'package:localize_and_translate/src/defaults.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:http/http.dart' as http;
 
 class LocalizeAndTranslate {
   ///------------------------------------------------
