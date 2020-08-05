@@ -49,6 +49,23 @@ flutter:
     - assets/langs/ar.json
 ```
 
+### Migrate from 2.x.x to 3.x.x
+- Replace
+```dart
+LIST_OF_LANGS = ['ar', 'en'];
+LANGS_DIR = 'assets/langs/';
+await translator.init();
+```
+- With
+```dart
+await translator.init(
+    localeDefault: LocalizationDefaultType.device,
+    languagesList: <String>['ar', 'en'],
+    assetsDirectory: 'assets/langs/',
+    apiKeyGoogle: '<Key>', // NOT YET TESTED
+);
+```
+
 ### Initialization
 - Add imports to main.dart
 - Make `main()` `async` and do the following
