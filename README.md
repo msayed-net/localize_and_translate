@@ -31,10 +31,8 @@ Flutter localization in easy steps, really simple
 
 ### Installation
 * add `.json` translation files as assets
-
 - For example : `'assets/langs/ar.json'` | `'assets/langs/en.json'`
 - structure should look like
-
 ``` json
 {
     "appTitle": "تطبيق تجريبى", 
@@ -43,9 +41,7 @@ Flutter localization in easy steps, really simple
     "textArea": "هذا مجرد نموذج للتأكد من اداء الأداة"
 }
 ```
-
 - define them as assets in pubspec.yaml
-
 ``` yaml
 flutter:
   assets:
