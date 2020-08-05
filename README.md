@@ -1,16 +1,10 @@
 # localize_and_translate
 
-Flutter localization abstract, Really simple
+Flutter localization in easy steps, really simple
 
 [![Pub](https://img.shields.io/badge/Get%20library-pub-blue)](https://pub.dev/packages/localize_and_translate)
 [![Example](https://img.shields.io/badge/Example-Ex-success)](https://pub.dev/packages/localize_and_translate#-example-tab-)
 
-
-### Show some :heart: and star the repo
-
-[![Fork](https://img.shields.io/github/forks/msayed-net/localize_and_translate?style=social)](https://github.com/msayed-net/localize_and_translate/fork)
-[![Star](https://img.shields.io/github/stars/msayed-net/localize_and_translate?style=social)](https://github.com/msayed-net/localize_and_translate/stargazers)
-[![Watch](https://img.shields.io/github/watchers/msayed-net/localize_and_translate?style=social)](https://github.com/msayed-net/localize_and_translate/) 
 
 ## Screenshots
 
@@ -187,14 +181,11 @@ class _HomeState extends State<Home> {
 
 ```
 
-### Contributions
+### Show some :heart: and star the repo
+[![Fork](https://img.shields.io/github/forks/msayed-net/localize_and_translate?style=social)](https://github.com/msayed-net/localize_and_translate/fork)
+[![Star](https://img.shields.io/github/stars/msayed-net/localize_and_translate?style=social)](https://github.com/msayed-net/localize_and_translate/stargazers)
+[![Watch](https://img.shields.io/github/watchers/msayed-net/localize_and_translate?style=social)](https://github.com/msayed-net/localize_and_translate/) 
 
-* `translate()` accept keys : by [mo-ah-dawood](https://github.com/mo-ah-dawood)
-* Change template from plugin to package : by [mo-ah-dawood](https://github.com/mo-ah-dawood)
-
-### Known Issues
-
-* Lowest Flutter Version (1.12.13)
 
 ## Project Created & Maintained By
 
@@ -202,10 +193,8 @@ class _HomeState extends State<Home> {
 
 Software Engineer | In :heart: with Flutter
 
-# Donate
-
-> If you found this project helpful or you learned something from the source code and want to thank me, consider buying me a cup of :coffee:
->
-> - [PayPal](https://www.paypal.me/msayednet/)
-
 ## Note : All Contibutions Are Welcomed
+
+### Contributions
+* `translate()` accept keys : by [mo-ah-dawood](https://github.com/mo-ah-dawood)
+* Change template from plugin to package : by [mo-ah-dawood](https://github.com/mo-ah-dawood)
