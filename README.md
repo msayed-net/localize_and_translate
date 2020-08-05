@@ -7,19 +7,16 @@ Flutter localization in easy steps, really simple
 
 
 ## Screenshots
-
 <img src="https://github.com/msayed-net/localize_and_translate/blob/master/screenshot1.png?raw=true" alt="screenshot" width="200"/><span>  </span><img src="https://github.com/msayed-net/localize_and_translate/blob/master/screenshot2.png?raw=true" alt="screenshot" width="200"/>
 
+
 ## Tutorial
-
 ### Video
-
 * Arabic : [https://www.youtube.com/watch?v=nfDYussovfQ](https://www.youtube.com/watch?feature=player_embedded&v=nfDYussovfQ)
+* English : soon..
 
-[![Alt text](https://img.youtube.com/vi/nfDYussovfQ/0.jpg)](https://www.youtube.com/watch?v=nfDYussovfQ)
 
 ### Methods
-
 | Method        | Job           |
 | ------------- |:-------------:|
 | `init()` |initialize things, before runApp() |
@@ -188,13 +185,11 @@ class _HomeState extends State<Home> {
 
 
 ## Project Created & Maintained By
-
 ### [![Mohamed Sayed](./logo.png)](https://msayed.net)
-
 Software Engineer | In :heart: with Flutter
 
-## Note : All Contibutions Are Welcomed
 
+## Note : All Contibutions Are Welcomed
 ### Contributions
 * `translate()` accept keys : by [mo-ah-dawood](https://github.com/mo-ah-dawood)
 * Change template from plugin to package : by [mo-ah-dawood](https://github.com/mo-ah-dawood)
