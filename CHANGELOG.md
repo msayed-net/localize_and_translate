@@ -2,7 +2,8 @@
 * Improvements
 * Add another online translation methods
 
-## 3.0.1
+## 3.0.2
+* Bug Fix
 * Remove `LIST_OF_LANGS` & `LANGS_DIR`
 * `init()` now takes all needed parameters
 * Google Translate : added with developer-based api key -> NOT YET TESTED

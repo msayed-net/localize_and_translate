@@ -61,6 +61,9 @@ class LocalizeAndTranslate {
           if (deviceLocale.contains('-')) {
             deviceLocale = deviceLocale.split('-')[0];
           }
+          if (deviceLocale.contains('_')) {
+            deviceLocale = deviceLocale.split('_')[0];
+          }
           print(
             '--LocalizeAndTranslate : deviceLocale($deviceLocale)',
           );
