@@ -2,6 +2,11 @@
 * Improvements
 * Add another online translation methods
 
+# 3.0.3
+* Bug Fix
+* Upgrade Packages
+* Remove intl
+
 ## 3.0.2
 * Bug Fix
 * Remove `LIST_OF_LANGS` & `LANGS_DIR`
