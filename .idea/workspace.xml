@@ -29,11 +29,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="26626ac9-32b9-47f7-a1b2-82cc90645af2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/example/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/localize_and_translate.iml" beforeDir="false" afterPath="$PROJECT_DIR$/localize_and_translate.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/main.class.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/main.class.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,6 +68,14 @@
       <option name="presentableId" value="Default" />
       <updated>1607628850178</updated>
     </task>
+    <task id="LOCAL-00001" summary="FIX - Auto - Android Studio">
+      <created>1607631665735</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1607631665735</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -81,30 +89,38 @@
       </map>
     </option>
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="FIX - Auto - Android Studio" />
+    <option name="LAST_COMMIT_MESSAGE" value="FIX - Auto - Android Studio" />
+  </component>
   <component name="WindowStateProjectService">
     <state x="466" y="151" width="424" height="478" key="FileChooserDialogImpl" timestamp="1607629262871">
       <screen x="0" y="20" width="1366" height="748" />
     </state>
     <state x="466" y="151" width="424" height="478" key="FileChooserDialogImpl/0.20.1366.748@0.20.1366.748" timestamp="1607629262871" />
-    <state width="977" height="152" key="GridCell.Tab.0.bottom" timestamp="1607631099352">
+    <state width="977" height="155" key="GridCell.Tab.0.bottom" timestamp="1607632313858">
       <screen x="0" y="20" width="1366" height="748" />
     </state>
-    <state width="977" height="152" key="GridCell.Tab.0.bottom/0.20.1366.748@0.20.1366.748" timestamp="1607631099352" />
-    <state width="977" height="152" key="GridCell.Tab.0.center" timestamp="1607631099351">
+    <state width="977" height="155" key="GridCell.Tab.0.bottom/0.20.1366.748@0.20.1366.748" timestamp="1607632313858" />
+    <state width="977" height="155" key="GridCell.Tab.0.center" timestamp="1607632313856">
       <screen x="0" y="20" width="1366" height="748" />
     </state>
-    <state width="977" height="152" key="GridCell.Tab.0.center/0.20.1366.748@0.20.1366.748" timestamp="1607631099351" />
-    <state width="977" height="152" key="GridCell.Tab.0.left" timestamp="1607631099351">
+    <state width="977" height="155" key="GridCell.Tab.0.center/0.20.1366.748@0.20.1366.748" timestamp="1607632313856" />
+    <state width="977" height="155" key="GridCell.Tab.0.left" timestamp="1607632313856">
       <screen x="0" y="20" width="1366" height="748" />
     </state>
-    <state width="977" height="152" key="GridCell.Tab.0.left/0.20.1366.748@0.20.1366.748" timestamp="1607631099351" />
-    <state width="977" height="152" key="GridCell.Tab.0.right" timestamp="1607631099352">
+    <state width="977" height="155" key="GridCell.Tab.0.left/0.20.1366.748@0.20.1366.748" timestamp="1607632313856" />
+    <state width="977" height="155" key="GridCell.Tab.0.right" timestamp="1607632313857">
       <screen x="0" y="20" width="1366" height="748" />
     </state>
-    <state width="977" height="152" key="GridCell.Tab.0.right/0.20.1366.748@0.20.1366.748" timestamp="1607631099352" />
+    <state width="977" height="155" key="GridCell.Tab.0.right/0.20.1366.748@0.20.1366.748" timestamp="1607632313857" />
     <state x="187" y="28" key="SettingsEditor" timestamp="1607631062739">
       <screen x="0" y="20" width="1366" height="748" />
     </state>
     <state x="187" y="28" key="SettingsEditor/0.20.1366.748@0.20.1366.748" timestamp="1607631062739" />
+    <state x="123" y="65" width="762" height="652" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1607632304996">
+      <screen x="0" y="20" width="1366" height="748" />
+    </state>
+    <state x="123" y="65" width="762" height="652" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.20.1366.748@0.20.1366.748" timestamp="1607632304996" />
   </component>
 </project>

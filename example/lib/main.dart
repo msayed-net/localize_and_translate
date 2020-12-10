@@ -64,15 +64,6 @@ class Home extends StatelessWidget {
               },
               child: Text(translator.translate('buttonTitle')),
             ),
-            OutlineButton(
-              onPressed: () async {
-                print(await translator.translateWithGoogle(
-                  key: 'رجل',
-                  from: 'ar',
-                ));
-              },
-              child: Text(translator.translate('googleTest')),
-            ),
           ],
         ),
       ),

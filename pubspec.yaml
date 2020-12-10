@@ -11,10 +11,9 @@ dependencies:
     sdk: flutter
   flutter:
     sdk: flutter
-  shared_preferences: ^0.5.8
-  intl: ^0.16.0
+  shared_preferences: ^0.5.12+4
   http: ^0.12.2
-  devicelocale: ^0.3.1
+  devicelocale: ^0.3.3
 
 
 

@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:http/http.dart' as http;
-import 'package:intl/intl.dart' as intl;
 import 'package:localize_and_translate/src/defaults.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -204,8 +203,7 @@ class LocalizeAndTranslate {
   /// Determine Active Layout (bool)
   ///------------------------------------------------
   isDirectionRTL(BuildContext context) {
-    return intl.Bidi.isRtlLanguage(
-        Localizations.localeOf(context).languageCode);
+    return Directionality.of(context) == TextDirection.rtl;
   }
 
   ///------------------------------------------------
