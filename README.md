@@ -190,3 +190,4 @@ Software Engineer | In :heart:  with Flutter
 ### Contributions
 * `translate()` accept keys : by [mo-ah-dawood](https://github.com/mo-ah-dawood)
 * Change template from plugin to package : by [mo-ah-dawood](https://github.com/mo-ah-dawood)
+
