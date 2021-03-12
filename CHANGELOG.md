@@ -2,7 +2,10 @@
 * Improvements
 * Add another online translation methods
 
-# 3.0.3
+## 4.0.0
+* Migrate To Null-Safe
+
+## 3.0.3
 * Bug Fix
 * Upgrade Packages
 * Remove intl
