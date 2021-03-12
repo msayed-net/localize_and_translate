@@ -53,7 +53,7 @@ class Home extends StatelessWidget {
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 35),
             ),
-            OutlineButton(
+            OutlinedButton(
               onPressed: () {
                 translator.setNewLanguage(
                   context,

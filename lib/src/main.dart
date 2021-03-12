@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:http/http.dart' as http;
 import 'package:localize_and_translate/src/defaults.dart';
+import 'package:localize_and_translate/src/localized_app.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LocalizeAndTranslate {
@@ -112,8 +113,7 @@ class LocalizeAndTranslate {
   /// Transle : [key]
   ///------------------------------------------------
   String translate(String key, [Map<String, String> arguments]) {
-    String value =
-        (_values == null || _values[key] == null) ? '$key' : _values[key];
+    String value = (_values == null || _values[key] == null) ? '$key' : _values[key];
     if (arguments == null) return value;
     for (var key in arguments.keys) {
       value = value.replaceAll(key, arguments[key]);
@@ -242,41 +242,3 @@ class LocalizeAndTranslate {
 }
 
 LocalizeAndTranslate translator = new LocalizeAndTranslate();
-
-class LocalizedApp extends StatefulWidget {
-  final Widget child;
-
-  LocalizedApp({this.child});
-
-  ///------------------------------------------------
-  /// Restart App
-  ///------------------------------------------------
-  static restart(BuildContext context) {
-    final _LocalizedAppState state = context.findAncestorStateOfType();
-    state.restart();
-  }
-
-  @override
-  _LocalizedAppState createState() => _LocalizedAppState();
-}
-
-class _LocalizedAppState extends State<LocalizedApp> {
-  Key key = new UniqueKey();
-
-  ///------------------------------------------------
-  /// Restart App
-  ///------------------------------------------------
-  void restart() {
-    this.setState(() {
-      key = new UniqueKey();
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return new Container(
-      key: key,
-      child: widget.child,
-    );
-  }
-}
