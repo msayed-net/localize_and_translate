@@ -84,11 +84,11 @@ class LocalizeAndTranslate {
   ///------------------------------------------------
   /// Transle : [key]
   ///------------------------------------------------
-  String? translate(String key, [Map<String, String>? arguments]) {
-    String? value = (_values == null || _values![key] == null) ? '$key' : _values![key];
+  String translate(String key, [Map<String, String>? arguments]) {
+    String value = (_values == null || _values![key] == null) ? '$key' : _values![key];
     if (arguments == null) return value;
     for (var key in arguments.keys) {
-      value = value!.replaceAll(key, arguments[key]!);
+      value = value.replaceAll(key, arguments[key]!);
     }
     return value;
   }

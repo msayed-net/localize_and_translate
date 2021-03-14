@@ -2,7 +2,7 @@
 * Improvements
 * Add another online translation methods
 
-## 4.0.0
+## 4.0.0, 4.0.1
 * Migrate To Null-Safe
 
 ## 3.0.3
