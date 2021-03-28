@@ -1,5 +1,6 @@
 ## Next
 * Improvements
+* Ability to addd delegates
 * Add another online translation methods
 
 ## 4.0.0, 4.0.1
