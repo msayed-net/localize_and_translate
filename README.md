@@ -1,6 +1,6 @@
 # localize_and_translate
 
-Flutter localization in easy steps, really simple
+Flutter localization in easy steps
 
 [![Pub](https://img.shields.io/badge/Get%20library-pub-blue)](https://pub.dev/packages/localize_and_translate)
 [![Example](https://img.shields.io/badge/Example-Ex-success)](https://pub.dev/packages/localize_and_translate#-example-tab-)
@@ -175,7 +175,7 @@ class Home extends StatelessWidget {
 
 ```
 
-### Show some :heart: and star the repo
+### :heart: this
 [![Fork](https://img.shields.io/github/forks/msayed-net/localize_and_translate?style=social)](https://github.com/msayed-net/localize_and_translate/fork)
 [![Star](https://img.shields.io/github/stars/msayed-net/localize_and_translate?style=social)](https://github.com/msayed-net/localize_and_translate/stargazers)
 [![Watch](https://img.shields.io/github/watchers/msayed-net/localize_and_translate?style=social)](https://github.com/msayed-net/localize_and_translate/) 
