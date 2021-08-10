@@ -1,28 +1,22 @@
 PODS:
-  - devicelocale (0.0.1):
-    - Flutter
   - Flutter (1.0.0)
   - shared_preferences (0.0.1):
     - Flutter
 
 DEPENDENCIES:
-  - devicelocale (from `.symlinks/plugins/devicelocale/ios`)
   - Flutter (from `Flutter`)
   - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
 
 EXTERNAL SOURCES:
-  devicelocale:
-    :path: ".symlinks/plugins/devicelocale/ios"
   Flutter:
     :path: Flutter
   shared_preferences:
     :path: ".symlinks/plugins/shared_preferences/ios"
 
 SPEC CHECKSUMS:
-  devicelocale: feebbe5e7a30adb8c4f83185de1b50ff19b44f00
-  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
-  shared_preferences: 430726339841afefe5142b9c1f50cb6bd7793e01
+  Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
+  shared_preferences: af6bfa751691cdc24be3045c43ec037377ada40d
 
 PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.10.1

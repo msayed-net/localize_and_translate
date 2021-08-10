@@ -9,11 +9,10 @@ main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await translator.init(
-    localeDefault: LocalizationDefaultType.device,
+    localeType: LocalizationDefaultType.device,
     languagesList: <String>['ar', 'en'],
-    assetsDirectory: 'assets/langs/',
-    apiKeyGoogle: '<Key>', // NOT YET TESTED
-  ); // intialize
+    assetsDirectory: 'assets/lang/',
+  );
 
   runApp(LocalizedApp(child: MyApp()));
 }
@@ -41,8 +40,7 @@ class Home extends StatelessWidget {
     return Scaffold(
       drawer: Drawer(),
       appBar: AppBar(
-        title: Text(translator.translate('appTitle')),
-        // centerTitle: true,
+        title: Text('appTitle'.tr()),
       ),
       body: Container(
         width: double.infinity,
@@ -52,29 +50,24 @@ class Home extends StatelessWidget {
           children: <Widget>[
             SizedBox(height: 50),
             Text(
-              translator.translate('textArea'),
+              'textArea'.tr(),
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 35),
             ),
-            OutlineButton(
-              onPressed: () {
-                translator.setNewLanguage(
-                  context,
-                  newLanguage: translator.currentLanguage == 'ar' ? 'en' : 'ar',
-                  remember: true,
-                  restart: true,
+            Wrap(
+              children: translator.locals().map((i) {
+                return OutlinedButton(
+                  onPressed: () {
+                    translator.setNewLanguage(
+                      context,
+                      newLanguage: i.languageCode,
+                      remember: true,
+                      restart: true,
+                    );
+                  },
+                  child: Text(i.languageCode),
                 );
-              },
-              child: Text(translator.translate('buttonTitle')),
-            ),
-            OutlineButton(
-              onPressed: () async {
-                print(await translator.translateWithGoogle(
-                  key: 'رجل',
-                  from: 'ar',
-                ));
-              },
-              child: Text(translator.translate('googleTest')),
+              }).toList(),
             ),
           ],
         ),

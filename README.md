@@ -19,7 +19,8 @@ Flutter localization in easy steps
 ### Methods
 | Method        | Job           |
 | ------------- |:-------------:|
-| `init()` |initialize things, before runApp() |
+| `init()` |initialize things, before runApp()|
+| `"word".tr()` |word translation - string extension|
 | `translate('word')` |word translation |
 | `translate('word',{"key":"value"})` |word translation with replacement arguments|
 | `setNewLanguage(context,newLanguage:'en',restart: true, remember: true,)` |change language |
@@ -31,13 +32,12 @@ Flutter localization in easy steps
 
 ### Installation
 * add `.json` translation files as assets
-- For example : `'assets/langs/ar.json'` | `'assets/langs/en.json'`
+- For example : `'assets/lang/ar.json'` | `'assets/lang/en.json'`
 - structure should look like
 ``` json
 {
     "appTitle": "تطبيق تجريبى", 
     "buttonTitle": "English", 
-    "googleTest": "تجربة ترجمة جوجل", 
     "textArea": "هذا مجرد نموذج للتأكد من اداء الأداة"
 }
 ```
@@ -45,25 +45,8 @@ Flutter localization in easy steps
 ``` yaml
 flutter:
   assets:
-    - assets/langs/en.json
-    - assets/langs/ar.json
-```
-
-### Migrate from 2.x.x to 3.x.x
-- Replace
-```dart
-LIST_OF_LANGS = ['ar', 'en'];
-LANGS_DIR = 'assets/langs/';
-await translator.init();
-```
-- With
-```dart
-await translator.init(
-    localeDefault: LocalizationDefaultType.device,
-    languagesList: <String>['ar', 'en'],
-    assetsDirectory: 'assets/langs/',
-    apiKeyGoogle: '<Key>', // NOT YET TESTED
-);
+    - assets/lang/en.json
+    - assets/lang/ar.json
 ```
 
 ### Initialization
@@ -83,10 +66,9 @@ main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await translator.init(
-    localeDefault: LocalizationDefaultType.device,
+    localeType: LocalizationDefaultType.device,
     languagesList: <String>['ar', 'en'],
-    assetsDirectory: 'assets/langs/',
-    apiKeyGoogle: '<Key>', // NOT YET TESTED
+    assetsDirectory: 'assets/lang/',
   );
 
   runApp(
@@ -121,7 +103,6 @@ class _MyAppState extends State<MyApp> {
 ### Usage
 
 * use `translate("appTitle")` 
-* use `googleTranslate("test", from: 'en', to: 'ar')` 
 * use `setNewLanguage(context, newLanguage: 'ar', remember: true, restart: true);`
 
 ``` dart
@@ -156,15 +137,6 @@ class Home extends StatelessWidget {
                 );
               },
               child: Text(translator.translate('buttonTitle')),
-            ),
-            OutlineButton(
-              onPressed: () async {
-                print(await translator.translateWithGoogle(
-                  key: 'رجل',
-                  from: 'ar',
-                ));
-              },
-              child: Text(translator.translate('googleTest')),
             ),
           ],
         ),

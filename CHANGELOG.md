@@ -1,7 +1,10 @@
 ## Next
 * Improvements
-* Ability to addd delegates
-* Add another online translation methods
+
+## 4.1.0
+* Remove Google Translate
+* Add String Extension .tr()
+* Enhance Performance
 
 ## 4.0.0, 4.0.1
 * Migrate To Null-Safe

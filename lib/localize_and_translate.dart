@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'src/main.dart';
 
+// Locale Types
 enum LocalizationDefaultType { device, asDefined }
+
+// Instance
 LocalizeAndTranslate translator = new LocalizeAndTranslate();
 
 class LocalizedApp extends StatefulWidget {
@@ -10,9 +13,9 @@ class LocalizedApp extends StatefulWidget {
 
   LocalizedApp({this.child});
 
-  ///------------------------------------------------
-  /// Restart App
-  ///------------------------------------------------
+  ///---
+  /// Reloads the app
+  ///---
   static void restart(BuildContext context) {
     context.findAncestorStateOfType<_LocalizedAppState>()!.restart();
   }
@@ -24,9 +27,6 @@ class LocalizedApp extends StatefulWidget {
 class _LocalizedAppState extends State<LocalizedApp> {
   Key key = new UniqueKey();
 
-  ///------------------------------------------------
-  /// Restart App
-  ///------------------------------------------------
   void restart() {
     this.setState(() {
       key = new UniqueKey();
@@ -40,4 +40,8 @@ class _LocalizedAppState extends State<LocalizedApp> {
       child: widget.child,
     );
   }
+}
+
+extension Translation on String {
+  String tr() => translator.translate(this);
 }
