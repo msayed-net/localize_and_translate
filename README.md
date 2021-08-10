@@ -112,7 +112,7 @@ class Home extends StatelessWidget {
     return Scaffold(
       drawer: Drawer(),
       appBar: AppBar(
-        title: Text(translator.translate('appTitle')),
+        title: Text('appTitle'.tr()),
         // centerTitle: true,
       ),
       body: Container(
@@ -123,7 +123,7 @@ class Home extends StatelessWidget {
           children: <Widget>[
             SizedBox(height: 50),
             Text(
-              translator.translate('textArea'),
+              'textArea'.tr(),
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 35),
             ),
@@ -136,7 +136,7 @@ class Home extends StatelessWidget {
                   restart: true,
                 );
               },
-              child: Text(translator.translate('buttonTitle')),
+              child: Text('buttonTitle'.tr()),
             ),
           ],
         ),

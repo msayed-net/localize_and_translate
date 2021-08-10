@@ -1,7 +1,7 @@
 ## Next
 * Improvements
 
-## 4.1.0
+## 4.1.0, 4.1.1
 * Remove Google Translate
 * Add String Extension .tr()
 * Enhance Performance
