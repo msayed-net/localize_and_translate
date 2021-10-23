@@ -1,7 +1,4 @@
 # localize_and_translate
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 Flutter localization in easy steps
 
@@ -155,25 +152,3 @@ class Home extends StatelessWidget {
 }
 
 ```
-
-## Contributors ✨
-
-Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
-
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-<table>
-  <tr>
-    <td align="center"><a href="https://www.linkedin.com/in/msayed-net"><img src="https://avatars.githubusercontent.com/u/25801517?s=40&v=4?s=100" width="100px;" alt=""/><br /><sub><b>Mohamed Sayed</b></sub></a><br /><a href="https://github.com/msayed-net/localize_and_translate/commits?author=msayed-net" title="Code">💻</a></td>
-    <td align="center"><a href="https://www.linkedin.com/in/mohamed-ahmed-2220b6121/"><img src="https://avatars.githubusercontent.com/u/31937782?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Mohamed Dawood</b></sub></a><br /><a href="https://github.com/msayed-net/localize_and_translate/commits?author=mo-ah-dawood" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/RYOKSEC"><img src="https://avatars.githubusercontent.com/u/31315805?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Eyad Al-Khatib</b></sub></a><br /><a href="https://github.com/msayed-net/localize_and_translate/commits?author=RYOKSEC" title="Code">💻</a></td>
-    </tr>
-</table>
-
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
-
-<!-- ALL-CONTRIBUTORS-LIST:END -->
-
-This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
