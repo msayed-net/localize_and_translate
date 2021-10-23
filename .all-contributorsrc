@@ -6,6 +6,15 @@
   "commit": false,
   "contributors": [
     {
+      "login": "msayed-net",
+      "name": "Mohamed Sayed",
+      "avatar_url": "https://avatars.githubusercontent.com/u/25801517?s=40&v=4",
+      "profile": "https://www.linkedin.com/in/msayed-net/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
       "login": "mo-ah-dawood",
       "name": "Mohamed Dawood",
       "avatar_url": "https://avatars.githubusercontent.com/u/31937782?v=4",
@@ -13,7 +22,16 @@
       "contributions": [
         "code"
       ]
-    }
+    },
+    {
+      "login": "RYOKSEC",
+      "name": "Eyad Al-Khatib",
+      "avatar_url": "https://avatars.githubusercontent.com/u/31315805?v=4",
+      "profile": "https://github.com/RYOKSEC",
+      "contributions": [
+        "code"
+      ]
+    },
   ],
   "contributorsPerLine": 7,
   "projectName": "localize_and_translate",
