@@ -152,3 +152,7 @@ class Home extends StatelessWidget {
 }
 
 ```
+
+## Contributors
+
+![Contributors List](./CONTRIBUTORS.svg)
