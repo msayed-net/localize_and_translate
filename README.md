@@ -151,14 +151,3 @@ class Home extends StatelessWidget {
 [![Fork](https://img.shields.io/github/forks/msayed-net/localize_and_translate?style=social)](https://github.com/msayed-net/localize_and_translate/fork)
 [![Star](https://img.shields.io/github/stars/msayed-net/localize_and_translate?style=social)](https://github.com/msayed-net/localize_and_translate/stargazers)
 [![Watch](https://img.shields.io/github/watchers/msayed-net/localize_and_translate?style=social)](https://github.com/msayed-net/localize_and_translate/) 
-
-
-## Project Created & Maintained By
-### [![Mohamed Sayed](./logo.png)](https://msayed.net)
-Software Engineer | In :heart:  with Flutter
-
-
-## Note : All Contibutions Are Welcomed
-### Contributions
-* `translate()` accept keys : by [mo-ah-dawood](https://github.com/mo-ah-dawood)
-* Change template from plugin to package : by [mo-ah-dawood](https://github.com/mo-ah-dawood)
