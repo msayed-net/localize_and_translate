@@ -2,7 +2,7 @@
 
 Flutter localization in easy steps
 
-[![Pub](https://img.shields.io/badge/Get%20library-pub-blue)](https://pub.dev/packages/localize_and_translate)
+[![Pub](https://img.shields.io/badge/Localize%20And%20Translate-pub-blue)](https://pub.dev/packages/localize_and_translate)
 [![Example](https://img.shields.io/badge/Example-Ex-success)](https://pub.dev/packages/localize_and_translate#-example-tab-)
 
 [![Fork](https://img.shields.io/github/forks/msayed-net/localize_and_translate?style=social)](https://github.com/msayed-net/localize_and_translate/fork)
