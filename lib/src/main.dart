@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -10,16 +10,23 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../localize_and_translate.dart';
 
 class LocalizeAndTranslate {
+  // Thread Safe - Singleton
+  factory LocalizeAndTranslate() => _appTranslator;
+  LocalizeAndTranslate._internal() {
+    debugPrint('--LocalizeAndTranslate-- (Instance Created --> Singleton)');
+  }
+  static final LocalizeAndTranslate _appTranslator = LocalizeAndTranslate._internal();
+
   // Config Vars
   LocalizationDefaultType? _localeType;
-  List<String> _langList = [];
+  List<String> _langList = <String>[];
   String? _assetsDir;
   Locale? _locale;
-  Map<String, dynamic>? _values;
+  dynamic _values;
   late SharedPreferences _prefs;
 
   ///---
-  /// # init(LocalizationDefaultType.device, languagesList=["en", "ar"], assetsDirectory="assets/lang/")
+  /// ###  init(LocalizationDefaultType.device, languagesList=["en", "ar"], assetsDirectory="assets/lang/")
   ///
   /// Initialize things
   ///---
@@ -47,7 +54,7 @@ class LocalizeAndTranslate {
     if (language != null) {
       _locale = Locale(language);
     } else if (_prefs.getString('pActiveLanguageCode') != null) {
-      _locale = Locale(_prefs.getString('pActiveLanguageCode')!, "");
+      _locale = Locale(_prefs.getString('pActiveLanguageCode')!, '');
     } else if (_localeType == LocalizationDefaultType.device) {
       if ('${window.locale}'.contains(RegExp('[-_]'))) {
         _locale = Locale('${window.locale}'.split(RegExp('[-_]'))[0]);
@@ -63,7 +70,7 @@ class LocalizeAndTranslate {
         _assetsDir != null || valuesAsMap != null,
         '--You must define assetsDirectory or valuesAsMap',
       );
-      return null;
+      return;
     }
 
     if (_assetsDir != null) {
@@ -73,22 +80,25 @@ class LocalizeAndTranslate {
       _values = valuesAsMap;
     }
 
-    print(
-      '--LocalizeAndTranslate : LangList$_langList | Dir($_assetsDir) | Active(${_locale!.languageCode}.json)',
-    );
+    if (kDebugMode) {
+      print(
+        '--LocalizeAndTranslate-- LangList$_langList | Dir($_assetsDir) | Active(${_locale!.languageCode}.json)',
+      );
+    }
   }
 
   ///---
   /// Loads language Map<key, value>
   ///---
-  initLanguage(String languageCode) async {
-    String filePath = "$_assetsDir$languageCode.json";
-    String content = await rootBundle.loadString(filePath);
-    return json.decode(content);
+  Future<dynamic> initLanguage(String languageCode) async {
+    final String filePath = '$_assetsDir$languageCode.json';
+    final String contentString = await rootBundle.loadString(filePath);
+    final dynamic data = json.decode(contentString);
+    return data;
   }
 
   ///---
-  /// # translate("cat")
+  /// ###  translate("cat")
   ///
   /// translates a word
   ///---
@@ -96,64 +106,62 @@ class LocalizeAndTranslate {
     'Now tr() attached to String, e.g. "door".tr() will work, make sure you imported the package @ the working file',
   )
   String translate(String key, [Map<String, String>? arguments]) {
-    String value = (_values == null || _values![key] == null) ? '$key' : _values![key];
-    if (arguments == null) return value;
-    for (var key in arguments.keys) {
-      value = value.replaceAll(key, arguments[key]!);
+    String value = _values?[key]?.toString() ?? key;
+
+    if (arguments != null) {
+      for (final String key in arguments.keys) {
+        value = value.replaceAll(key, arguments[key]!);
+      }
+      return value;
     }
+
     return value;
   }
 
   ///---
-  /// # setNewLanguage(context, newLanguage="en", restart=true, remember = true)
+  /// ### setNewLanguage(context, newLanguage="en", restart=true, remember = true)
   ///
   /// changes active language
   ///---
   Future<void> setNewLanguage(
     BuildContext context, {
     required String newLanguage,
-    bool restart = true,
     bool remember = true,
   }) async {
-    if (newLanguage == "") {
+    if (newLanguage == '') {
       newLanguage = _locale?.languageCode ?? _langList[0];
     }
 
-    _locale = Locale(newLanguage, "");
+    _locale = Locale(newLanguage, '');
 
-    String filePath = "$_assetsDir$newLanguage.json";
-    String content = await rootBundle.loadString(filePath);
-
-    _values = json.decode(content);
+    _values = await initLanguage(newLanguage);
 
     if (remember) {
       await _prefs.setString('pActiveLanguageCode', newLanguage);
     }
 
-    if (restart) {
-      LocalizedApp.restart(context);
-    }
+    applyChanges(context);
   }
 
   ///----
-  /// # isDirectionRTL(BuildContext context)
+  /// ###  isDirectionRTL(BuildContext context)
   ///
   /// returns `true` if active language direction is TRL
   ///---
   bool isDirectionRTL(BuildContext context) => Directionality.of(context) == TextDirection.rtl;
 
   ///---
-  /// # restart(BuildContext context)
+  /// ###  restart(BuildContext context)
   ///
   /// reloads the app
   ///---
-  restart(BuildContext context) => LocalizedApp.restart(context);
+  dynamic applyChanges(BuildContext context) => LocalizedApp.applyChanges(context);
 
   @Deprecated('Use `activeLanguageCode` instead')
   String get currentLanguage => _locale!.languageCode;
 
   ///---
-  /// # Returns active language code as string
+  /// ###  Returns active language code as string
   ///---
   String get activeLanguageCode => _locale!.languageCode;
 
@@ -161,16 +169,16 @@ class LocalizeAndTranslate {
   Locale get locale => _locale ?? Locale(_langList[0]);
 
   ///---
-  /// # Returns active locale as Locale
+  /// ###  Returns active locale as Locale
   ///---
   Locale get activeLocale => _locale ?? Locale(_langList[0]);
 
   ///---
-  /// # Returns app delegates.
+  /// ###  Returns app delegates.
   ///
   /// used in app entry point e.g. MaterialApp()
   /// ---
-  Iterable<LocalizationsDelegate> get delegates => [
+  Iterable<LocalizationsDelegate<dynamic>> get delegates => <LocalizationsDelegate<dynamic>>[
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
@@ -178,9 +186,9 @@ class LocalizeAndTranslate {
       ];
 
   ///---
-  /// # Returns app locales.
+  /// ###  Returns app locales.
   ///
   /// used in app entry point e.g. MaterialApp()
   /// ---
-  Iterable<Locale> locals() => _langList.map<Locale>((lang) => new Locale(lang, ''));
+  Iterable<Locale> locals() => _langList.map<Locale>((String lang) => Locale(lang, ''));
 }
