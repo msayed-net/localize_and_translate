@@ -1,14 +1,15 @@
 name: localize_and_translate_example
 description: Example for how to use the localize_and_translate plugin.
 publish_to: "none"
+version: 1.0.0+1
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: ">=2.12.0-0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^0.1.2
+  cupertino_icons: ^1.0.5
   # print_color: any
   localize_and_translate:
     path: ../
