@@ -4,7 +4,7 @@ import 'package:localize_and_translate/localize_and_translate.dart';
 /// [ContextExtensions] is the extension class for the [BuildContext].
 extension ContextExtensions on BuildContext {
   /// [locale] is the getter for the localization delegates.
-  Locale get locale => Localizations.localeOf(this);
+  Locale get locale => LocalizeAndTranslate.getLocale();
 
   /// [supportedLocales] is the getter for the supported locales.
   List<Locale> get supportedLocales => LocalizeAndTranslate.getLocals();
