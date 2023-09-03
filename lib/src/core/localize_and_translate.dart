@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart' as intl;
 import 'package:localize_and_translate/src/assets/asset_loader_base.dart';
 import 'package:localize_and_translate/src/constants/db_keys.dart';
@@ -80,8 +81,6 @@ class LocalizeAndTranslate {
     List<String>? supportedLanguageCodes,
     LocalizationDefaultType? type = LocalizationDefaultType.device,
   }) async {
-    await DBBox.openBox();
-
     final locales = supportedLocales ?? supportedLanguageCodes?.map(Locale.new).toList();
 
     if (locales == null) {
@@ -127,6 +126,7 @@ class LocalizeAndTranslate {
     List<String>? supportedLanguageCodes,
     LocalizationDefaultType defaultType = LocalizationDefaultType.device,
   }) async {
+    await Hive.initFlutter();
     await DBBox.openBox();
 
     await writeSettings(
