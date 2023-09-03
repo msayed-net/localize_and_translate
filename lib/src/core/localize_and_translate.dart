@@ -110,7 +110,7 @@ class LocalizeAndTranslate {
     await DBUseCases.writeMap(
       data.map((key, value) {
         return MapEntry(
-          DBKeys.trPrefix(getLanguageCode(), getCountryCode()) + key,
+          DBKeys.appendPrefix(key),
           value.toString(),
         );
       }),
@@ -193,7 +193,7 @@ class LocalizeAndTranslate {
   /// ---
   static String translate(String key, {String? defaultValue}) {
     final dbKey = DBUseCases.read(
-      DBKeys.trPrefix(getLanguageCode(), getCountryCode()) + key,
+      DBKeys.appendPrefix(key),
     );
 
     if (dbKey == null) {

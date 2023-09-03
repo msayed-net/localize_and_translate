@@ -3,6 +3,13 @@
 * Improvements
 * Auto state change after change lang
 
+## 5.0.7-dev
+
+* New Architecture
+* New Methods
+* New Features
+* New Docs
+
 ## 5.0.0-dev
 
 * Re-Structure Package

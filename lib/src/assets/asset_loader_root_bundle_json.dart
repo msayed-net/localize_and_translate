@@ -44,11 +44,11 @@ class AssetLoaderRootBundleJson implements AssetLoaderBase {
 
         if (countryCode != null) {
           values.forEach((key, value) {
-            newValues[DBKeys.trPrefix(languageCode, countryCode) + key] = value;
+            newValues[DBKeys.appendPrefix(key)] = value;
           });
         } else {
           values.forEach((key, value) {
-            newValues[DBKeys.trPrefix(languageCode) + key] = value;
+            newValues[DBKeys.appendPrefix(key)] = value;
           });
         }
 

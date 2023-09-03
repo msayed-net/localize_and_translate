@@ -1,3 +1,5 @@
+import 'package:localize_and_translate/src/core/localize_and_translate.dart';
+
 /// [DBKeys] is a singleton class that contains all the keys used in the database.
 class DBKeys {
   /// [DBKeys] constructor
@@ -20,6 +22,8 @@ class DBKeys {
   /// [locales] is the key for the isRTL.
   static const String locales = 'locales';
 
-  /// [trPrefix] is the prefix for the translations.
-  static String trPrefix(String languageCode, [String? countryCode]) => 'tr__${languageCode}__${countryCode}__';
+  /// [appendPrefix] is the prefix for the translations.
+  static String appendPrefix(String key) {
+    return 'tr__${LocalizeAndTranslate.getLanguageCode()}__${LocalizeAndTranslate.getCountryCode()}_$key';
+  }
 }
