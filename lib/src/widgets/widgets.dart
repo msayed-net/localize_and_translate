@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
 
+/// [FutureErrorWidget] is the widget that is shown when there is an error in the future.
 class FutureErrorWidget extends StatelessWidget {
-  const FutureErrorWidget({Key? key, this.msg = 'Loading ...'}) : super(key: key);
+  /// [FutureErrorWidget] constructor
+  const FutureErrorWidget({
+    this.msg = 'Loading ...',
+    super.key,
+  });
+
+  /// [msg] is the message to be shown.
   final String msg;
+
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return ColoredBox(
       color: Colors.white,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
