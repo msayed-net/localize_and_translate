@@ -117,7 +117,6 @@ class LocalizeAndTranslate {
   }) async {
     await DBUseCases.writeMap(
       data.map((key, value) {
-        debugPrint('write ... key: $key - value: $value');
         return MapEntry(key, value.toString());
       }),
     );
@@ -199,10 +198,6 @@ class LocalizeAndTranslate {
   /// ---
   static String translate(String key, {String? defaultValue}) {
     final text = DBUseCases.read(DBKeys.appendPrefix(key));
-
-    debugPrint('key: ${DBKeys.appendPrefix(key)} - value: $text');
-    debugPrint('defaultValue: $defaultValue');
-    debugPrint('text: $text');
 
     return text ?? defaultValue ?? ErrorMessages.keyNotFound(key);
   }

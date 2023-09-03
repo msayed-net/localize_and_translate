@@ -48,19 +48,13 @@ class AssetLoaderRootBundleJson implements AssetLoaderBase {
             languageCode: languageCode,
             countryCode: countryCode,
           )] = values[key];
-
-          debugPrint('key: ${DBKeys.buildPrefix(
-            key: key,
-            languageCode: languageCode,
-            countryCode: countryCode,
-          )} - value: ${values[key]}');
         }
 
         result.addAll(newValues);
       }
     }
 
-    debugPrint('result: ${result.length}');
+    debugPrint('--LocalizeAndTranslate-- Translated Strings: ${result.length}');
     return result;
   }
 }

@@ -33,6 +33,6 @@ class DBKeys {
     required String languageCode,
     required String? countryCode,
   }) {
-    return 'tr__${languageCode}_${countryCode}_$key';
+    return 'tr__${languageCode}_${countryCode ?? ''}_$key';
   }
 }
