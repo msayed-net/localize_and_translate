@@ -40,17 +40,19 @@ class AssetLoaderRootBundleJson implements AssetLoaderBase {
       final values = json.decode(valuesStr);
 
       if (values is Map<String, dynamic>) {
+        final newValues = <String, dynamic>{};
+
         if (countryCode != null) {
           values.forEach((key, value) {
-            values[DBKeys.trPrefix(languageCode, countryCode)] = value;
+            newValues[DBKeys.trPrefix(languageCode, countryCode)] = value;
           });
         } else {
           values.forEach((key, value) {
-            values[DBKeys.trPrefix(languageCode)] = value;
+            newValues[DBKeys.trPrefix(languageCode)] = value;
           });
         }
 
-        result.addAll(values);
+        result.addAll(newValues);
       }
     }
 
