@@ -24,6 +24,6 @@ class DBKeys {
 
   /// [appendPrefix] is the prefix for the translations.
   static String appendPrefix(String key) {
-    return 'tr__${LocalizeAndTranslate.getLanguageCode()}__${LocalizeAndTranslate.getCountryCode()}_$key';
+    return 'tr__${LocalizeAndTranslate.getLanguageCode()}_${LocalizeAndTranslate.getCountryCode()}_$key';
   }
 }
