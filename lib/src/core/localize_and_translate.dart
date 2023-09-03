@@ -5,6 +5,7 @@ import 'package:intl/intl.dart' as intl;
 import 'package:localize_and_translate/src/assets/asset_loader_base.dart';
 import 'package:localize_and_translate/src/constants/db_keys.dart';
 import 'package:localize_and_translate/src/constants/enums.dart';
+import 'package:localize_and_translate/src/constants/error_messages.dart';
 import 'package:localize_and_translate/src/db/box.dart';
 import 'package:localize_and_translate/src/db/usecases.dart';
 import 'package:localize_and_translate/src/exceptions/not_found_exception.dart';
@@ -198,7 +199,7 @@ class LocalizeAndTranslate {
   static String translate(String key, {String? defaultValue}) {
     final text = DBUseCases.read(DBKeys.appendPrefix(key));
 
-    return text ?? defaultValue ?? key;
+    return text ?? defaultValue ?? ErrorMessages.keyNotFound(key);
   }
 
   ///---

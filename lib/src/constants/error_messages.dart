@@ -8,4 +8,7 @@ class ErrorMessages {
   /// [oneOrMoreLocalesOrLanguagesCodesMustBeProvided] is the error message when
   static const String oneOrMoreLocalesOrLanguagesCodesMustBeProvided =
       'Ensure that you provide at least one of the supportedLocales or supportedLanguagesCodes';
+
+  /// [keyNotFound] is the error message when
+  static String keyNotFound(String key) => '$key - Not Found';
 }

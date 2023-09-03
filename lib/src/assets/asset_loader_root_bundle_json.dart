@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:localize_and_translate/src/assets/asset_loader_base.dart';
 import 'package:localize_and_translate/src/constants/db_keys.dart';
@@ -53,6 +54,7 @@ class AssetLoaderRootBundleJson implements AssetLoaderBase {
       }
     }
 
+    debugPrint('result: ${result.length}');
     return result;
   }
 }
