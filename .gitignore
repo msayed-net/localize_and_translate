@@ -74,5 +74,6 @@ build/
 !**/ios/**/default.perspectivev3
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
 
-# pubspec.lock
-# example/pubspec.lock
+pubspec.lock
+example/pubspec.lock
+linux/flutter/ephemeral/.plugin_symlinks/path_provider_linux
