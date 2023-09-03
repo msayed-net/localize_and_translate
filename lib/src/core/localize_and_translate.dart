@@ -22,6 +22,13 @@ class LocalizeAndTranslate {
   }
   static final LocalizeAndTranslate _appTranslator = LocalizeAndTranslate._internal();
 
+  /// ---
+  /// ###  clearBox
+  /// ---
+  static Future<void> clearBox() async {
+    await DBBox.box.clear();
+  }
+
   ///---
   /// ### setLocale
   /// ---
