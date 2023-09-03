@@ -192,9 +192,9 @@ class LocalizeAndTranslate {
   ///
   /// ---
   static String translate(String key, {String? defaultValue}) {
-    final text = DBUseCases.read(
-      DBKeys.appendPrefix(key),
-    );
+    final dbKey = DBUseCases.read(DBKeys.appendPrefix(key));
+
+    final text = dbKey != null ? DBUseCases.read(dbKey) : null;
 
     return text ?? defaultValue ?? key;
   }
