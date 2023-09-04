@@ -17,16 +17,19 @@ import 'package:localize_and_translate/src/exceptions/not_found_exception.dart';
 /// ```dart
 class LocalizeAndTranslate {
   /// [LocalizeAndTranslate] constructor
-  factory LocalizeAndTranslate() => _appTranslator;
-  LocalizeAndTranslate._internal() {
-    debugPrint('--LocalizeAndTranslate-- (Instance Created --> Singleton)');
-  }
-  static final LocalizeAndTranslate _appTranslator = LocalizeAndTranslate._internal();
+  factory LocalizeAndTranslate() => _instance;
+  LocalizeAndTranslate._internal();
+  static final LocalizeAndTranslate _instance = LocalizeAndTranslate._internal();
+
+  /// [notifyUI] is the function that is used to notify the UI.
+  static void Function()? notifyUI;
 
   /// ---
   /// ###  clearBox
   /// ---
   static Future<void> clearBox() async {
+    await Hive.initFlutter();
+    await DBBox.openBox();
     await DBBox.box.clear();
   }
 
@@ -36,25 +39,26 @@ class LocalizeAndTranslate {
   static Future<void> setLocale(Locale locale) async {
     await DBUseCases.write(DBKeys.languageCode, locale.languageCode);
 
-    await DBUseCases.write(DBKeys.countryCode, locale.countryCode ?? '');
+    if (locale.countryCode == 'null') {
+      await DBUseCases.write(DBKeys.countryCode, '');
+    } else {
+      await DBUseCases.write(DBKeys.countryCode, locale.countryCode ?? '');
+    }
 
     await DBUseCases.write(
       DBKeys.isRTL,
       intl.Bidi.isRtlLanguage(locale.languageCode) ? 'true' : 'false',
     );
+
+    notifyUI?.call();
   }
 
   ///---
   /// ### setLanguageCode
   /// ---
   static Future<void> setLanguageCode(String languageCode) async {
-    await DBUseCases.write(DBKeys.languageCode, languageCode);
-
-    await DBUseCases.write(DBKeys.countryCode, '');
-
-    await DBUseCases.write(
-      DBKeys.isRTL,
-      intl.Bidi.isRtlLanguage(languageCode) ? 'true' : 'false',
+    await setLocale(
+      Locale(languageCode),
     );
   }
 
@@ -65,60 +69,7 @@ class LocalizeAndTranslate {
   /// ---
   static List<Locale> getLocals() {
     return DBUseCases.localesFromDBString(
-      DBUseCases.read(DBKeys.locales) ?? '',
-    );
-  }
-
-  ///---
-  /// ###  Sets app locales.
-  /// It takes the list of locales.
-  /// It saves the list of locales to the database.
-  /// ---
-  static Future<void> setLocales(List<Locale> locales) async {
-    await DBUseCases.write(
-      DBKeys.locales,
-      DBUseCases.dbStringFromLocales(locales),
-    );
-  }
-
-  /// ---
-  /// ###  Ensures that the package is initialized.
-  /// ---
-  static Future<void> writeSettings({
-    List<Locale>? supportedLocales,
-    List<String>? supportedLanguageCodes,
-    LocalizationDefaultType? type = LocalizationDefaultType.device,
-  }) async {
-    final locales = supportedLocales ?? supportedLanguageCodes?.map(Locale.new).toList();
-
-    if (locales == null) {
-      throw NotFoundException('Locales not provided');
-    }
-
-    await setLocales(locales);
-
-    if (type == LocalizationDefaultType.device) {
-      await setLanguageCode(
-        intl.Intl.getCurrentLocale(),
-      );
-      return;
-    } else if (locales.isNotEmpty) {
-      await setLocale(locales.first);
-    }
-
-    // Todo: save translations to db
-  }
-
-  /// ---
-  /// ###  Writes translations to the database.
-  /// ---
-  static Future<void> writeTranslations({
-    required Map<String, dynamic> data,
-  }) async {
-    await DBUseCases.writeMap(
-      data.map((key, value) {
-        return MapEntry(key, value.toString());
-      }),
+      DBUseCases.readNullable(DBKeys.locales) ?? _getDeviceLanguageCode(),
     );
   }
 
@@ -134,7 +85,7 @@ class LocalizeAndTranslate {
     await Hive.initFlutter();
     await DBBox.openBox();
 
-    await writeSettings(
+    await _writeSettings(
       supportedLocales: supportedLocales,
       supportedLanguageCodes: supportedLanguageCodes,
       type: defaultType,
@@ -142,7 +93,11 @@ class LocalizeAndTranslate {
 
     final translations = await assetLoader.load();
 
-    await writeTranslations(data: translations);
+    await _writeTranslations(data: translations);
+
+    debugPrint(
+      '--LocalizeAndTranslate-- init | LanguageCode: ${getLanguageCode()} | CountryCode: ${getCountryCode()} | isRTL: ${isRTL()}',
+    );
   }
 
   /// ---
@@ -158,24 +113,16 @@ class LocalizeAndTranslate {
   /// ---
   /// ###  Returns language code
   /// ---
-  static String getCountryCode() {
-    final langCode = DBUseCases.read(DBKeys.countryCode);
-
-    if (langCode == null) {
-      throw NotFoundException('Country code not found');
-    }
-
-    return langCode;
-  }
+  static String? getCountryCode() => DBUseCases.readNullable(DBKeys.countryCode);
 
   /// ---
   /// ###  Returns language code
   /// ---
   static String getLanguageCode() {
-    final langCode = DBUseCases.read(DBKeys.languageCode);
+    final langCode = DBUseCases.readNullable(DBKeys.languageCode);
 
     if (langCode == null) {
-      throw NotFoundException('Language code not found');
+      return _getDeviceLocale().split('-').first;
     }
 
     return langCode;
@@ -197,7 +144,7 @@ class LocalizeAndTranslate {
   ///
   /// ---
   static String translate(String key, {String? defaultValue}) {
-    final text = DBUseCases.read(DBKeys.appendPrefix(key));
+    final text = DBUseCases.readNullable(DBKeys.appendPrefix(key));
 
     return text ?? defaultValue ?? ErrorMessages.keyNotFound(key);
   }
@@ -213,4 +160,92 @@ class LocalizeAndTranslate {
         GlobalCupertinoLocalizations.delegate,
         DefaultCupertinoLocalizations.delegate,
       ];
+
+  ///---
+  /// ###  builder directionality
+  /// ---
+  static Widget directionBuilder(BuildContext context, Widget? child) {
+    return Directionality(
+      textDirection: isRTL() ? TextDirection.rtl : TextDirection.ltr,
+      child: child ?? const SizedBox(),
+    );
+  }
+
+  ///---
+  /// ###  Sets app locales.
+  /// It takes the list of locales.
+  /// It saves the list of locales to the database.
+  /// ---
+  static Future<void> _setLocales(List<Locale> locales) async {
+    await DBUseCases.write(
+      DBKeys.locales,
+      DBUseCases.dbStringFromLocales(locales),
+    );
+  }
+
+  /// ---
+  /// ###  Ensures that the package is initialized.
+  /// ---
+  static Future<void> _writeSettings({
+    List<Locale>? supportedLocales,
+    List<String>? supportedLanguageCodes,
+    LocalizationDefaultType? type = LocalizationDefaultType.device,
+  }) async {
+    final locales = supportedLocales ?? supportedLanguageCodes?.map(Locale.new).toList();
+
+    if (locales == null) {
+      throw NotFoundException('Locales not provided');
+    }
+
+    await _setLocales(locales);
+
+    if (_getSavedLanguageCode() != null) {
+      await setLocale(getLocale());
+      return;
+    }
+
+    if (type == LocalizationDefaultType.device) {
+      await setLanguageCode(
+        _getDeviceLanguageCode(),
+      );
+      return;
+    }
+
+    if (locales.isNotEmpty) {
+      await setLocale(locales.first);
+      return;
+    }
+  }
+
+  /// ---
+  /// ###  Writes translations to the database.
+  /// ---
+  static Future<void> _writeTranslations({
+    required Map<String, dynamic> data,
+  }) async {
+    await DBUseCases.writeMap(
+      data.map((key, value) {
+        return MapEntry(key, value.toString());
+      }),
+    );
+  }
+
+  static String? _getSavedLanguageCode() {
+    return DBUseCases.readNullable(DBKeys.languageCode);
+  }
+
+  /// ---
+  /// ###  Returns device locale.
+  /// ---
+  static String _getDeviceLocale() {
+    return intl.Intl.getCurrentLocale();
+  }
+
+  /// ---
+  /// ###  Returns device language code.
+  /// ---
+  static String _getDeviceLanguageCode() {
+    // split on - or _ to support locales like en-US or en_US
+    return _getDeviceLocale().split(RegExp('[-_]+')).first;
+  }
 }

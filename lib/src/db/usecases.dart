@@ -8,7 +8,10 @@ class DBUseCases {
   const DBUseCases();
 
   /// [read] is used to retrieve a data from the database.
-  static String? read(String key) => DBBox.box.get(key) ?? key;
+  static String read(String key) => DBBox.box.get(key) ?? key;
+
+  /// [readNullable] is used to retrieve a data from the database.
+  static String? readNullable(String key) => DBBox.box.get(key);
 
   /// [write] is used to write a data to the database.
   static Future<void> write(String key, String value) async {

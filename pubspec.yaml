@@ -1,16 +1,16 @@
 name: localize_and_translate
 description: Flutter localization in easy steps, simple ways to localize and translate your app
-version: 5.0.15-dev
+version: 5.0.21-dev
 homepage: https://github.com/msayed-net/localize_and_translate
 issue_tracker: https://github.com/msayed-net/localize_and_translate/issues
 
 environment:
-  sdk: ">=2.17.0 <3.0.0"
+  sdk: ">=2.17.0 <4.0.0"
 
 dependencies:
-  flutter_localizations:
-    sdk: flutter
   flutter:
+    sdk: flutter
+  flutter_localizations:
     sdk: flutter
 
   hive: ^2.2.3

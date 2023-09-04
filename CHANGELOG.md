@@ -1,7 +1,16 @@
 # Next
 
-* Improvements
+* Enhance docs
+
+## 5.0.21-dev
+
+* Code analysis
+
+## 5.0.20-dev
+
+* Bug Fix
 * Auto state change after change lang
+* Enhance Performance
 
 ## 5.0.7-dev
 
