@@ -17,4 +17,16 @@ extension ContextExtensions on BuildContext {
 
   /// [delegates] is the getter for the localization delegates.
   Iterable<LocalizationsDelegate<dynamic>> get delegates => LocalizeAndTranslate.delegates;
+
+  /// [setLocale] is the setter for the locale.
+  void setLocale(Locale locale) => LocalizeAndTranslate.setLocale(locale);
+
+  /// [setLanguageCode] is the setter for the language code.
+  void setLanguageCode(String languageCode) => LocalizeAndTranslate.setLanguageCode(languageCode);
+
+  /// [resetLocale] is the setter for the language code.
+  void resetLocale() => LocalizeAndTranslate.resetLocale();
+
+  /// [countryCode] is the setter for the language code.
+  void countryCode() => LocalizeAndTranslate.getCountryCode();
 }

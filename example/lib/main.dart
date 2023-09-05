@@ -4,7 +4,7 @@ import 'package:localize_and_translate/localize_and_translate.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await LocalizeAndTranslate.ensureInitialized(
+  await LocalizeAndTranslate.init(
     assetLoader: AssetLoaderRootBundleJson(
       'assets/lang',
     ),

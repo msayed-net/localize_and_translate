@@ -25,9 +25,9 @@ class LocalizeAndTranslate {
   static void Function()? notifyUI;
 
   /// ---
-  /// ###  clearBox
+  /// ###  resetLocale
   /// ---
-  static Future<void> clearBox() async {
+  static Future<void> resetLocale() async {
     await Hive.initFlutter();
     await DBBox.openBox();
     await DBBox.box.clear();
@@ -76,7 +76,7 @@ class LocalizeAndTranslate {
   /// ---
   /// ###  Ensures that the package is initialized.
   /// ---
-  static Future<void> ensureInitialized({
+  static Future<void> init({
     required AssetLoaderBase assetLoader,
     List<Locale>? supportedLocales,
     List<String>? supportedLanguageCodes,
