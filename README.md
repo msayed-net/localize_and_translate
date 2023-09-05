@@ -105,12 +105,12 @@ void main() async {
 
 ### 📜 Localize And Translate init properties
 
-| Properties              | Required | Default                       | Description                                                                                                                                                            |
-|-------------------------|----------|-------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| supportedLanguageCodes  | or next  |                               | List of supported languages to be converted to locales.                                                                                                                |
-| supportedLocales        | or prev  |                               | List of supported locales.                                                                                                                                             |
-| defaultType             | false    |                               | Path to your folder with localization files.                                                                                                                           |
-| assetLoader             | true     | `AssetLoaderRootBundleJson()` | Class loader for localization values. You can create your own class.                                                                                                   |
+| Properties             | Required | Description                                                          |
+|------------------------|----------|----------------------------------------------------------------------|
+| supportedLanguageCodes | or next  | List of supported languages to be converted to locales.              |
+| supportedLocales       | or prev  | List of supported locales.                                           |
+| defaultType            | false    | Path to your folder with localization files.                         |
+| assetLoader            | true     | Class loader for localization values. You can create your own class. |
 
 ## Usage
 
