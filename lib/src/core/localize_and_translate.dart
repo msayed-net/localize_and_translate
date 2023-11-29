@@ -107,7 +107,7 @@ class LocalizeAndTranslate {
       type: defaultType,
     );
 
-    final translations = await assetLoader.load();
+    final Map<String, dynamic> translations = await assetLoader.load();
 
     await _writeTranslations(data: translations);
 
@@ -137,7 +137,7 @@ class LocalizeAndTranslate {
   /// ###  Returns language code
   /// ---
   static String getLanguageCode() {
-    final langCode = DBUseCases.readNullable(DBKeys.languageCode);
+    final String? langCode = DBUseCases.readNullable(DBKeys.languageCode);
 
     if (langCode == null) {
       return _getDeviceLocale().split('-').first;
@@ -162,7 +162,7 @@ class LocalizeAndTranslate {
   ///
   /// ---
   static String translate(String key, {String? defaultValue}) {
-    final text = DBUseCases.readNullable(DBKeys.appendPrefix(key));
+    final String? text = DBUseCases.readNullable(DBKeys.appendPrefix(key));
 
     return text ?? defaultValue ?? ErrorMessages.keyNotFound(key);
   }
@@ -211,7 +211,7 @@ class LocalizeAndTranslate {
     LocalizationDefaultType? type = LocalizationDefaultType.device,
     String? hivePath,
   }) async {
-    final locales =
+    final List<Locale>? locales =
         supportedLocales ?? supportedLanguageCodes?.map(Locale.new).toList();
 
     if (locales == null) {
@@ -249,8 +249,8 @@ class LocalizeAndTranslate {
     required Map<String, dynamic> data,
   }) async {
     await DBUseCases.writeMap(
-      data.map((key, value) {
-        return MapEntry(key, value.toString());
+      data.map((String key, dynamic value) {
+        return MapEntry<String, String>(key, value.toString());
       }),
     );
   }

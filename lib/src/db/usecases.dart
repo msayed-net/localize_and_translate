@@ -30,13 +30,16 @@ class DBUseCases {
 
   /// [dbStringFromLocales]
   static String dbStringFromLocales(List<Locale> data) {
-    return data.map((e) => '[${e.languageCode},${e.countryCode}]').join('===');
+    return data
+        .map((Locale e) => '[${e.languageCode},${e.countryCode}]')
+        .join('===');
   }
 
   /// [localesFromDBString]
   static List<Locale> localesFromDBString(String data) {
-    return data.split('===').map((e) {
-      final parts = e.replaceAll('[', '').replaceAll(']', '').split(',');
+    return data.split('===').map((String e) {
+      final List<String> parts =
+          e.replaceAll('[', '').replaceAll(']', '').split(',');
       return Locale(parts[0], parts[1]);
     }).toList();
   }

@@ -17,32 +17,35 @@ class AssetLoaderRootBundleJson implements AssetLoaderBase {
 
   @override
   Future<Map<String, dynamic>> load() async {
-    final assetManifest = await AssetManifest.loadFromAssetBundle(rootBundle);
-    final paths = assetManifest.listAssets().where(
-          (element) => element.contains(directory),
+    final AssetManifest assetManifest =
+        await AssetManifest.loadFromAssetBundle(rootBundle);
+    final Iterable<String> paths = assetManifest.listAssets().where(
+          (String element) => element.contains(directory),
         );
 
-    final result = <String, dynamic>{};
+    final Map<String, dynamic> result = <String, dynamic>{};
 
-    for (final path in paths) {
-      final fileName = path.split('/').last;
-      final fileNameNoExtension = fileName.split('.').first;
-      var languageCode = '';
+    for (final String path in paths) {
+      final String fileName = path.split('/').last;
+      final String fileNameNoExtension = fileName.split('.').first;
+      String languageCode = '';
       String? countryCode;
 
       if (fileNameNoExtension.contains('-')) {
         languageCode = fileNameNoExtension.split('-').first;
-        countryCode = fileNameNoExtension.split('-').length > 2 ? fileNameNoExtension.split('-').elementAt(1) : null;
+        countryCode = fileNameNoExtension.split('-').length > 2
+            ? fileNameNoExtension.split('-').elementAt(1)
+            : null;
       } else {
         languageCode = fileNameNoExtension;
       }
 
-      final valuesStr = await rootBundle.loadString(path);
-      final values = json.decode(valuesStr);
+      final String valuesStr = await rootBundle.loadString(path);
+      final dynamic values = json.decode(valuesStr);
 
       if (values is Map<String, dynamic>) {
-        final newValues = <String, dynamic>{};
-        for (final key in values.keys) {
+        final Map<String, dynamic> newValues = <String, dynamic>{};
+        for (final String key in values.keys) {
           newValues[DBKeys.buildPrefix(
             key: key,
             languageCode: languageCode,

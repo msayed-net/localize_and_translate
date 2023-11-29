@@ -1,5 +1,3 @@
-library localize_and_translate;
-
 export 'package:localize_and_translate/src/assets/asset_loader_root_bundle_json.dart';
 export 'package:localize_and_translate/src/constants/enums.dart';
 export 'package:localize_and_translate/src/core/localize_and_translate.dart';

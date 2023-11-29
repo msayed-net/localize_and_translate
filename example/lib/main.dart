@@ -5,7 +5,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await LocalizeAndTranslate.init(
-    assetLoader: AssetLoaderRootBundleJson('assets/lang'),
+    assetLoader: const AssetLoaderRootBundleJson('assets/lang'),
     supportedLanguageCodes: const <String>['ar', 'en'],
   );
 
@@ -15,7 +15,7 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
-  const MyHomePage({Key? key}) : super(key: key);
+  const MyHomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -48,18 +48,19 @@ class MyHomePage extends StatelessWidget {
         title: Text('name'.tr()),
       ),
       body: Center(
-          child: ElevatedButton(
-        onPressed: () {
-          if (LocalizeAndTranslate.getLanguageCode() == 'ar') {
-            LocalizeAndTranslate.setLanguageCode('en');
-            print('new lang: en -- context.locale: ${context.locale}');
-          } else {
-            LocalizeAndTranslate.setLanguageCode('ar');
-            print('new lang: ar -- context.locale: ${context.locale}');
-          }
-        },
-        child: Text('change'.tr()),
-      )),
+        child: ElevatedButton(
+          onPressed: () {
+            if (LocalizeAndTranslate.getLanguageCode() == 'ar') {
+              LocalizeAndTranslate.setLanguageCode('en');
+              debugPrint('new lang: en -- context.locale: ${context.locale}');
+            } else {
+              LocalizeAndTranslate.setLanguageCode('ar');
+              debugPrint('new lang: ar -- context.locale: ${context.locale}');
+            }
+          },
+          child: Text('change'.tr()),
+        ),
+      ),
     );
   }
 }
