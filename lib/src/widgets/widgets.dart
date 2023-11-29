@@ -29,14 +29,16 @@ class FutureErrorWidget extends StatelessWidget {
             'Localize And Translate:',
             textAlign: TextAlign.center,
             textDirection: TextDirection.ltr,
-            style: TextStyle(fontWeight: FontWeight.w700, color: Colors.red, fontSize: 25),
+            style: TextStyle(
+                fontWeight: FontWeight.w700, color: Colors.red, fontSize: 25),
           ),
           const SizedBox(height: 10),
           Text(
             '"$msg"',
             textAlign: TextAlign.center,
             textDirection: TextDirection.ltr,
-            style: const TextStyle(fontWeight: FontWeight.w500, color: Colors.red, fontSize: 14),
+            style: const TextStyle(
+                fontWeight: FontWeight.w500, color: Colors.red, fontSize: 14),
           ),
           const SizedBox(height: 30),
         ],
