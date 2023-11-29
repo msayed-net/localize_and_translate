@@ -22,6 +22,9 @@ class DBKeys {
   /// [locales] is the key for the isRTL.
   static const String locales = 'locales';
 
+  /// [hivePath] is the path of the hive database.
+  static const String hivePath = 'localize_and_translate_hive_db_path';
+
   /// [appendPrefix] is the prefix for the translations.
   static String appendPrefix(String key) {
     return 'tr__${LocalizeAndTranslate.getLanguageCode()}_${LocalizeAndTranslate.getCountryCode()}_$key';

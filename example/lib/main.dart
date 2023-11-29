@@ -5,9 +5,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await LocalizeAndTranslate.init(
-    assetLoader: AssetLoaderRootBundleJson(
-      'assets/lang',
-    ),
+    assetLoader: AssetLoaderRootBundleJson('assets/lang'),
     supportedLanguageCodes: const <String>['ar', 'en'],
   );
 

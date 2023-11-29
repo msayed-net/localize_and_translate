@@ -19,19 +19,19 @@ class LocalizeAndTranslate {
   /// [LocalizeAndTranslate] constructor
   factory LocalizeAndTranslate() => _instance;
   LocalizeAndTranslate._internal();
-  static final LocalizeAndTranslate _instance = LocalizeAndTranslate._internal();
+  static final LocalizeAndTranslate _instance =
+      LocalizeAndTranslate._internal();
 
   /// [notifyUI] is the function that is used to notify the UI.
   static void Function()? notifyUI;
 
-  /// ---
-  /// ###  resetLocale
-  /// ---
-  static Future<void> resetLocale() async {
-    await Hive.initFlutter();
-    await DBBox.openBox();
-    await DBBox.box.clear();
-  }
+  // /// ---
+  // /// ###  resetLocale
+  // /// ---
+  // static Future<void> resetLocale() async {
+  //   await DBBox.openBox();
+  //   await DBBox.box.clear();
+  // }
 
   ///---
   /// ### setLocale
@@ -51,6 +51,13 @@ class LocalizeAndTranslate {
     );
 
     notifyUI?.call();
+  }
+
+  /// ---
+  /// ###  setHivePath
+  /// ---
+  static Future<void> setHivePath(String path) async {
+    await DBUseCases.write(DBKeys.hivePath, path);
   }
 
   ///---
@@ -81,8 +88,17 @@ class LocalizeAndTranslate {
     List<Locale>? supportedLocales,
     List<String>? supportedLanguageCodes,
     LocalizationDefaultType defaultType = LocalizationDefaultType.device,
+    String? hivePath,
+    HiveStorageBackendPreference? hiveBackendPreference,
   }) async {
-    await Hive.initFlutter();
+    if (hivePath != null && hiveBackendPreference != null) {
+      Hive.init(hivePath, backendPreference: hiveBackendPreference);
+    } else if (hivePath != null && hiveBackendPreference == null) {
+      Hive.init(hivePath);
+    } else {
+      await Hive.initFlutter();
+    }
+
     await DBBox.openBox();
 
     await _writeSettings(
@@ -96,7 +112,8 @@ class LocalizeAndTranslate {
     await _writeTranslations(data: translations);
 
     debugPrint(
-      '--LocalizeAndTranslate-- init | LanguageCode: ${getLanguageCode()} | CountryCode: ${getCountryCode()} | isRTL: ${isRTL()}',
+      '--LocalizeAndTranslate-- init | LanguageCode: ${getLanguageCode()}'
+      ' | CountryCode: ${getCountryCode()} | isRTL: ${isRTL()}',
     );
   }
 
@@ -113,7 +130,8 @@ class LocalizeAndTranslate {
   /// ---
   /// ###  Returns language code
   /// ---
-  static String? getCountryCode() => DBUseCases.readNullable(DBKeys.countryCode);
+  static String? getCountryCode() =>
+      DBUseCases.readNullable(DBKeys.countryCode);
 
   /// ---
   /// ###  Returns language code
@@ -154,7 +172,8 @@ class LocalizeAndTranslate {
   ///
   /// used in app entry point e.g. MaterialApp()
   /// ---
-  static Iterable<LocalizationsDelegate<dynamic>> get delegates => <LocalizationsDelegate<dynamic>>[
+  static Iterable<LocalizationsDelegate<dynamic>> get delegates =>
+      <LocalizationsDelegate<dynamic>>[
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
@@ -190,11 +209,17 @@ class LocalizeAndTranslate {
     List<Locale>? supportedLocales,
     List<String>? supportedLanguageCodes,
     LocalizationDefaultType? type = LocalizationDefaultType.device,
+    String? hivePath,
   }) async {
-    final locales = supportedLocales ?? supportedLanguageCodes?.map(Locale.new).toList();
+    final locales =
+        supportedLocales ?? supportedLanguageCodes?.map(Locale.new).toList();
 
     if (locales == null) {
       throw NotFoundException('Locales not provided');
+    }
+
+    if (hivePath != null) {
+      await setHivePath(hivePath);
     }
 
     await _setLocales(locales);

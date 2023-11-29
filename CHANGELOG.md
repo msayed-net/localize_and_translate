@@ -2,6 +2,11 @@
 
 * Add more features
 
+## 5.1.2
+
+* enable hive path and prefs change through params
+* disable resetLocale for now
+
 ## 5.1.1
 
 * Enhance docs
