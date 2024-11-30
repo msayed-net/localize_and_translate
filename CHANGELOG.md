@@ -2,6 +2,10 @@
 
 * Add more features
 
+## 6.0.0-dev.1
+
+* remove intl package
+
 ## 5.1.2
 
 * enable hive path and prefs change through params
