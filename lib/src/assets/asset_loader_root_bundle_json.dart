@@ -17,8 +17,7 @@ class AssetLoaderRootBundleJson implements AssetLoaderBase {
 
   @override
   Future<Map<String, dynamic>> load() async {
-    final AssetManifest assetManifest =
-        await AssetManifest.loadFromAssetBundle(rootBundle);
+    final AssetManifest assetManifest = await AssetManifest.loadFromAssetBundle(rootBundle);
     final Iterable<String> paths = assetManifest.listAssets().where(
           (String element) => element.contains(directory),
         );
@@ -33,9 +32,7 @@ class AssetLoaderRootBundleJson implements AssetLoaderBase {
 
       if (fileNameNoExtension.contains('-')) {
         languageCode = fileNameNoExtension.split('-').first;
-        countryCode = fileNameNoExtension.split('-').length > 2
-            ? fileNameNoExtension.split('-').elementAt(1)
-            : null;
+        countryCode = fileNameNoExtension.split('-').length > 2 ? fileNameNoExtension.split('-').elementAt(1) : null;
       } else {
         languageCode = fileNameNoExtension;
       }

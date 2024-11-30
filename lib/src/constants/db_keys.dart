@@ -36,6 +36,9 @@ class DBKeys {
     required String languageCode,
     required String? countryCode,
   }) {
+    if (countryCode == 'null') {
+      countryCode = '';
+    }
     return 'tr__${languageCode}_${countryCode ?? ''}_$key';
   }
 }
