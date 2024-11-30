@@ -2,7 +2,7 @@
 
 * Add more features
 
-## 6.0.0-dev.1
+## 6.0.0-dev.3
 
 * remove intl package
 
