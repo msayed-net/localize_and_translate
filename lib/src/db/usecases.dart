@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:localize_and_translate/src/db/box.dart';
+import 'package:localize_and_translate/src/db/db_box.dart';
 
 /// [DBUseCases] is a use case that localize and translate a text.
 class DBUseCases {
@@ -30,16 +30,13 @@ class DBUseCases {
 
   /// [dbStringFromLocales]
   static String dbStringFromLocales(List<Locale> data) {
-    return data
-        .map((Locale e) => '[${e.languageCode},${e.countryCode}]')
-        .join('===');
+    return data.map((Locale e) => '[${e.languageCode},${e.countryCode}]').join('===');
   }
 
   /// [localesFromDBString]
   static List<Locale> localesFromDBString(String data) {
     return data.split('===').map((String e) {
-      final List<String> parts =
-          e.replaceAll('[', '').replaceAll(']', '').split(',');
+      final List<String> parts = e.replaceAll('[', '').replaceAll(']', '').split(',');
       return Locale(parts[0], parts[1]);
     }).toList();
   }

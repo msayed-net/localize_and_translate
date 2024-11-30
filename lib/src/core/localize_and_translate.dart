@@ -1,12 +1,13 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:intl/intl.dart' as intl;
 import 'package:localize_and_translate/src/assets/asset_loader_base.dart';
 import 'package:localize_and_translate/src/constants/db_keys.dart';
 import 'package:localize_and_translate/src/constants/enums.dart';
 import 'package:localize_and_translate/src/constants/error_messages.dart';
-import 'package:localize_and_translate/src/db/box.dart';
+import 'package:localize_and_translate/src/db/db_box.dart';
 import 'package:localize_and_translate/src/db/usecases.dart';
 import 'package:localize_and_translate/src/exceptions/not_found_exception.dart';
 
@@ -19,19 +20,10 @@ class LocalizeAndTranslate {
   /// [LocalizeAndTranslate] constructor
   factory LocalizeAndTranslate() => _instance;
   LocalizeAndTranslate._internal();
-  static final LocalizeAndTranslate _instance =
-      LocalizeAndTranslate._internal();
+  static final LocalizeAndTranslate _instance = LocalizeAndTranslate._internal();
 
   /// [notifyUI] is the function that is used to notify the UI.
   static void Function()? notifyUI;
-
-  // /// ---
-  // /// ###  resetLocale
-  // /// ---
-  // static Future<void> resetLocale() async {
-  //   await DBBox.openBox();
-  //   await DBBox.box.clear();
-  // }
 
   ///---
   /// ### setLocale
@@ -47,7 +39,7 @@ class LocalizeAndTranslate {
 
     await DBUseCases.write(
       DBKeys.isRTL,
-      intl.Bidi.isRtlLanguage(locale.languageCode) ? 'true' : 'false',
+      isRtlLanguage(locale.languageCode) ? 'true' : 'false',
     );
 
     notifyUI?.call();
@@ -130,8 +122,7 @@ class LocalizeAndTranslate {
   /// ---
   /// ###  Returns language code
   /// ---
-  static String? getCountryCode() =>
-      DBUseCases.readNullable(DBKeys.countryCode);
+  static String? getCountryCode() => DBUseCases.readNullable(DBKeys.countryCode);
 
   /// ---
   /// ###  Returns language code
@@ -172,8 +163,7 @@ class LocalizeAndTranslate {
   ///
   /// used in app entry point e.g. MaterialApp()
   /// ---
-  static Iterable<LocalizationsDelegate<dynamic>> get delegates =>
-      <LocalizationsDelegate<dynamic>>[
+  static Iterable<LocalizationsDelegate<dynamic>> get delegates => <LocalizationsDelegate<dynamic>>[
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
@@ -211,8 +201,7 @@ class LocalizeAndTranslate {
     LocalizationDefaultType? type = LocalizationDefaultType.device,
     String? hivePath,
   }) async {
-    final List<Locale>? locales =
-        supportedLocales ?? supportedLanguageCodes?.map(Locale.new).toList();
+    final List<Locale>? locales = supportedLocales ?? supportedLanguageCodes?.map(Locale.new).toList();
 
     if (locales == null) {
       throw NotFoundException('Locales not provided');
@@ -263,7 +252,7 @@ class LocalizeAndTranslate {
   /// ###  Returns device locale.
   /// ---
   static String _getDeviceLocale() {
-    return intl.Intl.getCurrentLocale();
+    return Platform.localeName;
   }
 
   /// ---
@@ -272,5 +261,19 @@ class LocalizeAndTranslate {
   static String _getDeviceLanguageCode() {
     // split on - or _ to support locales like en-US or en_US
     return _getDeviceLocale().split(RegExp('[-_]+')).first;
+  }
+
+  /// Determines if a language is written right-to-left based on its language code.
+  static bool isRtlLanguage(String languageCode) {
+    const Set<String> rtlLanguages = <String>{
+      'ar', // Arabic
+      'fa', // Persian
+      'he', // Hebrew
+      'ur', // Urdu
+      'ps', // Pashto
+      'sd', // Sindhi
+    };
+
+    return rtlLanguages.contains(languageCode);
   }
 }
