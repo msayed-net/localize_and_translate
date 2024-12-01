@@ -45,27 +45,29 @@ class AssetLoaderNetwork implements AssetLoaderBase {
         final Response<dynamic> response = await _dio.get(url);
 
         if (response.statusCode == 200) {
-          final dynamic values = jsonDecode(response.data.toString());
+          final dynamic values = jsonDecode(jsonEncode(response.data));
 
           if (values is Map<String, dynamic>) {
-            final Map<String, dynamic> flattenedValues =
-                base.flattenJson(values);
+            final Map<String, dynamic> flattenedValues = base.flattenJson(values);
 
             for (final String key in flattenedValues.keys) {
               final String prefix = DBKeys.buildPrefix(
                 key: key,
                 languageCode: normalizedLanguageCode.split('_').first,
-                countryCode: normalizedLanguageCode.contains('_')
-                    ? normalizedLanguageCode.split('_').last
-                    : null,
+                countryCode: normalizedLanguageCode.contains('_') ? normalizedLanguageCode.split('_').last : null,
               );
 
               result[prefix] = flattenedValues[key];
             }
           }
+
+          debugPrint(
+            '--LocalizeAndTranslate - (AssetLoaderNetwork) -- Translated Strings: ${result.length}',
+          );
         } else {
           throw Exception(
-              'Failed to load translations for $normalizedLanguageCode: ${response.statusCode}');
+            '--LocalizeAndTranslate-- Failed to load translations for $normalizedLanguageCode: HTTP ${response.statusCode}',
+          );
         }
       } catch (e, stackTrace) {
         debugPrint(
