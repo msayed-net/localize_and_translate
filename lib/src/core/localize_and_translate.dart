@@ -21,8 +21,7 @@ class LocalizeAndTranslate {
   /// [LocalizeAndTranslate] constructor
   factory LocalizeAndTranslate() => _instance;
   LocalizeAndTranslate._internal();
-  static final LocalizeAndTranslate _instance =
-      LocalizeAndTranslate._internal();
+  static final LocalizeAndTranslate _instance = LocalizeAndTranslate._internal();
 
   /// [notifyUI] is the function that is used to notify the UI.
   static void Function()? notifyUI;
@@ -79,7 +78,7 @@ class LocalizeAndTranslate {
   /// ---
   static Future<void> init({
     required AssetLoaderBase assetLoader,
-    AssetLoaderBase? assetLoaderSecondary,
+    List<AssetLoaderBase>? assetLoadersExtra,
     List<Locale>? supportedLocales,
     List<String>? supportedLanguageCodes,
     LocalizationDefaultType defaultType = LocalizationDefaultType.device,
@@ -115,23 +114,22 @@ class LocalizeAndTranslate {
       debugPrint('--LocalizeAndTranslate-- Primary asset loader failed: $e');
     }
 
-    if (assetLoaderSecondary != null) {
-      try {
-        // Attempt to load translations using the fallback asset loader
-        fallbackTranslations = await assetLoaderSecondary.load(mapper);
-        debugPrint('--LocalizeAndTranslate-- Fallback asset loader succeeded');
-      } catch (fallbackError) {
-        debugPrint(
-          '--LocalizeAndTranslate-- Fallback asset loader failed: $fallbackError',
-        );
+    if (assetLoadersExtra != null) {
+      for (final AssetLoaderBase loader in assetLoadersExtra) {
+        try {
+          // Attempt to load translations using the secondary asset loader
+          final Map<String, dynamic> secondaryTranslations = await loader.load(mapper);
+          debugPrint('--LocalizeAndTranslate-- Secondary asset loader succeeded');
+          fallbackTranslations = secondaryTranslations;
+          break;
+        } catch (e) {
+          debugPrint('--LocalizeAndTranslate-- Secondary asset loader failed: $e');
+        }
       }
     }
 
     // Merge primary and fallback translations
-    finalTranslations = <String, dynamic>{
-      ...fallbackTranslations,
-      ...primaryTranslations
-    };
+    finalTranslations = <String, dynamic>{...fallbackTranslations, ...primaryTranslations};
 
     await _writeTranslations(data: finalTranslations);
 
@@ -154,8 +152,7 @@ class LocalizeAndTranslate {
   /// ---
   /// ###  Returns language code
   /// ---
-  static String? getCountryCode() =>
-      DBUseCases.readNullable(DBKeys.countryCode);
+  static String? getCountryCode() => DBUseCases.readNullable(DBKeys.countryCode);
 
   /// ---
   /// ###  Returns language code
@@ -196,8 +193,7 @@ class LocalizeAndTranslate {
   ///
   /// used in app entry point e.g. MaterialApp()
   /// ---
-  static Iterable<LocalizationsDelegate<dynamic>> get delegates =>
-      <LocalizationsDelegate<dynamic>>[
+  static Iterable<LocalizationsDelegate<dynamic>> get delegates => <LocalizationsDelegate<dynamic>>[
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
@@ -235,8 +231,7 @@ class LocalizeAndTranslate {
     LocalizationDefaultType? type = LocalizationDefaultType.device,
     String? hivePath,
   }) async {
-    final List<Locale>? locales =
-        supportedLocales ?? supportedLanguageCodes?.map(Locale.new).toList();
+    final List<Locale>? locales = supportedLocales ?? supportedLanguageCodes?.map(Locale.new).toList();
 
     if (locales == null) {
       throw NotFoundException('Locales not provided');

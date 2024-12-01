@@ -2,6 +2,10 @@
 
 * Add more features
 
+## 6.0.6
+
+* init() : add `assetLoadersExtra` parameter to change the default assetLoadersExtra
+
 ## 6.0.5
 
 * Fix exports
