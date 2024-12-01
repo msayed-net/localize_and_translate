@@ -65,7 +65,7 @@ Example:
 </array>
 ```
 
-### ⚙️ Configuration 
+### ⚙️ Configuration
 
 Add EasyLocalization widget like in example
 
@@ -106,7 +106,7 @@ void main() async {
 ### 📜 Localize And Translate init properties
 
 | Properties             | Required | Description                                                          |
-|------------------------|----------|----------------------------------------------------------------------|
+| ---------------------- | -------- | -------------------------------------------------------------------- |
 | supportedLanguageCodes | or next  | List of supported languages to be converted to locales.              |
 | supportedLocales       | or prev  | List of supported locales.                                           |
 | defaultType            | false    | Path to your folder with localization files.                         |
@@ -137,10 +137,33 @@ void main() async{
 }
 ```
 
+or over network
+
+```dart
+void main() async{
+  // ...
+  // Needs to be called so that we can await for LocalizeAndTranslate.init();
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await LocalizeAndTranslate.init(
+    assetLoader: const AssetLoaderNetwork({
+      'ar': 'https://raw.githubusercontent.com/msayed-net/localize_and_translate/main/example/assets/lang/ar.json',
+      'en': 'https://raw.githubusercontent.com/msayed-net/localize_and_translate/main/example/assets/lang/en.json',
+    }),
+    supportedLocales: <Locale>[Locale('ar', 'EG'), Locale('en', 'US')],
+    defaultType: LocalizationDefaultType.asDefined,
+  );
+  // ...
+  runApp(
+    // ...
+  );
+  // ...
+}
+```
+
 ### context extensions
 
 LocalizeAndTranslate uses extension methods [BuildContext] for access to some values.
-
 
 Example:
 
@@ -157,7 +180,6 @@ context.locale; // en_US
 // get language code
 context.languageCode; // en
 ```
-
 
 ### Translate `tr()`
 
@@ -179,21 +201,19 @@ as json values pair
 }
 ```
 
-
 ### API Reference
 
-| Properties         | Extension | Type     | Description                                                    |
-|--------------------|-----------|----------|----------------------------------------------------------------|
-| `countryCode`      | context   | Property | Gets the country code of the current locale.                   |
-| `delegates`        | context   | Property | Gets the list of localization delegates used for translation.  |
-| `init`             | no        | Method   | Initializes the plugin with the desired configuration values.  |
-| `locale`           | context   | Property | Gets the current locale being used for localization.           |
-| `resetLocale`      | context   | Method   | Resets the current locale to its default value.                |
-| `setLanguageCode`  | context   | Method   | Sets the language code for localization.                       |
-| `setLocale`        | context   | Method   | Sets the current locale to one of the supported locales.       |
-| `supportedLocales` | context   | Property | Gets the list of supported locales for the app.                |
-| `tr`               | string    | Method   | Retrieves the translated string for a given localization key.  |
-
+| Properties         | Extension | Type     | Description                                                   |
+| ------------------ | --------- | -------- | ------------------------------------------------------------- |
+| `countryCode`      | context   | Property | Gets the country code of the current locale.                  |
+| `delegates`        | context   | Property | Gets the list of localization delegates used for translation. |
+| `init`             | no        | Method   | Initializes the plugin with the desired configuration values. |
+| `locale`           | context   | Property | Gets the current locale being used for localization.          |
+| `resetLocale`      | context   | Method   | Resets the current locale to its default value.               |
+| `setLanguageCode`  | context   | Method   | Sets the language code for localization.                      |
+| `setLocale`        | context   | Method   | Sets the current locale to one of the supported locales.      |
+| `supportedLocales` | context   | Property | Gets the list of supported locales for the app.               |
+| `tr`               | string    | Method   | Retrieves the translated string for a given localization key. |
 
 Reset everything to default values passed through `init()`.
 
@@ -207,6 +227,7 @@ RaisedButton(
   child: Text(LocaleKeys.reset_locale).tr(),
 )
 ```
+
 ## Contributors
 
 [Contributors](https://github.com/msayed-net/localize_and_translate/graphs/contributors)

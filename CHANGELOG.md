@@ -2,9 +2,10 @@
 
 * Add more features
 
-## 6.0.0-dev.4
+## 6.0.0-dev.5
 
 * remove intl package
+* add AssetLoaderNetwork adapter
 
 ## 5.1.2
 
