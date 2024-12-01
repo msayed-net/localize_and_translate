@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:localize_and_translate/src/assets/asset_loader_base.dart';
 import 'package:localize_and_translate/src/constants/db_keys.dart';
+import 'package:localize_and_translate/src/mappers/nested_json_mapper.dart';
 
 /// [AssetLoaderRootBundleJson] is the asset loader for root bundle.
 /// It loads the assets from the root bundle.
@@ -17,8 +18,7 @@ class AssetLoaderRootBundleJson implements AssetLoaderBase {
 
   @override
   Future<Map<String, dynamic>> load() async {
-    final AssetManifest assetManifest =
-        await AssetManifest.loadFromAssetBundle(rootBundle);
+    final AssetManifest assetManifest = await AssetManifest.loadFromAssetBundle(rootBundle);
     final Iterable<String> paths = assetManifest.listAssets().where(
           (String element) => element.contains(directory),
         );
@@ -33,9 +33,7 @@ class AssetLoaderRootBundleJson implements AssetLoaderBase {
 
       if (fileNameNoExtension.contains('-')) {
         languageCode = fileNameNoExtension.split('-').first;
-        countryCode = fileNameNoExtension.split('-').length > 2
-            ? fileNameNoExtension.split('-').elementAt(1)
-            : null;
+        countryCode = fileNameNoExtension.split('-').length > 2 ? fileNameNoExtension.split('-').elementAt(1) : null;
       } else {
         languageCode = fileNameNoExtension;
       }
@@ -44,16 +42,15 @@ class AssetLoaderRootBundleJson implements AssetLoaderBase {
       final dynamic values = json.decode(valuesStr);
 
       if (values is Map<String, dynamic>) {
-        final Map<String, dynamic> newValues = <String, dynamic>{};
-        for (final String key in values.keys) {
-          newValues[DBKeys.buildPrefix(
+        final Map<String, dynamic> flattenedValues = NestedJsonMapper.flattenJson(values);
+
+        for (final String key in flattenedValues.keys) {
+          result[DBKeys.buildPrefix(
             key: key,
             languageCode: languageCode,
             countryCode: countryCode,
-          )] = values[key];
+          )] = flattenedValues[key];
         }
-
-        result.addAll(newValues);
       }
     }
 

@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:localize_and_translate/src/assets/asset_loader_base.dart';
 import 'package:localize_and_translate/src/constants/db_keys.dart';
+import 'package:localize_and_translate/src/mappers/nested_json_mapper.dart';
 
 /// [AssetLoaderNetwork] loads translation assets from a network source using a user-defined URL map.
 class AssetLoaderNetwork implements AssetLoaderBase {
@@ -35,12 +36,16 @@ class AssetLoaderNetwork implements AssetLoaderBase {
           final dynamic values = jsonDecode(response.data.toString());
 
           if (values is Map<String, dynamic>) {
-            for (final String key in values.keys) {
-              result[DBKeys.buildPrefix(
+            final Map<String, dynamic> flattenedValues = NestedJsonMapper.flattenJson(values);
+
+            for (final String key in flattenedValues.keys) {
+              final String prefix = DBKeys.buildPrefix(
                 key: key,
                 languageCode: normalizedLanguageCode.split('_').first,
                 countryCode: normalizedLanguageCode.contains('_') ? normalizedLanguageCode.split('_').last : null,
-              )] = values[key];
+              );
+
+              result[prefix] = flattenedValues[key];
             }
           }
         } else {
