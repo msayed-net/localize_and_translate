@@ -1,6 +1,6 @@
 # localize_and_translate
 
-Flutter localization in easy steps
+Flutter localization in easy steps, eas
 
 [![License](https://img.shields.io/github/license/msayed-net/localize_and_translate?style=for-the-badge)](https://github.com/msayed-net)
 [![Pub](https://img.shields.io/badge/PUB-pub-blue?style=for-the-badge)](https://pub.dev/packages/localize_and_translate)
@@ -67,7 +67,7 @@ Example:
 
 ### ⚙️ Configuration
 
-Add EasyLocalization widget like in example
+Add LocalizedApp widget like in example
 
 ```dart
 import 'package:flutter/material.dart';

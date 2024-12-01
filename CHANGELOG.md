@@ -2,6 +2,10 @@
 
 * Add more features
 
+## 6.0.2
+
+* Enhance Docs
+
 ## 6.0.1
 
 * remove intl package
