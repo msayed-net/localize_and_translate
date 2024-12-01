@@ -30,7 +30,9 @@ class DBUseCases {
 
   /// [dbStringFromLocales]
   static String dbStringFromLocales(List<Locale> data) {
-    return data.map((Locale e) => '${e.languageCode}-${e.countryCode}').join('===');
+    return data
+        .map((Locale e) => '${e.languageCode}-${e.countryCode}')
+        .join('===');
   }
 
   /// [localesFromDBString]

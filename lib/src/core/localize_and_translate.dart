@@ -78,6 +78,7 @@ class LocalizeAndTranslate {
   /// ---
   static Future<void> init({
     required AssetLoaderBase assetLoader,
+    AssetLoaderBase? assetLoaderSecondary,
     List<Locale>? supportedLocales,
     List<String>? supportedLanguageCodes,
     LocalizationDefaultType defaultType = LocalizationDefaultType.device,
@@ -101,9 +102,34 @@ class LocalizeAndTranslate {
       type: defaultType,
     );
 
-    final Map<String, dynamic> translations = await assetLoader.load(mapper);
+    Map<String, dynamic> primaryTranslations = <String, dynamic>{};
+    Map<String, dynamic> fallbackTranslations = <String, dynamic>{};
+    Map<String, dynamic> finalTranslations = <String, dynamic>{};
 
-    await _writeTranslations(data: translations);
+    try {
+      // Attempt to load translations using the primary asset loader
+      primaryTranslations = await assetLoader.load(mapper);
+      debugPrint('--LocalizeAndTranslate-- Primary asset loader succeeded');
+    } catch (e) {
+      debugPrint('--LocalizeAndTranslate-- Primary asset loader failed: $e');
+    }
+
+    if (assetLoaderSecondary != null) {
+      try {
+        // Attempt to load translations using the fallback asset loader
+        fallbackTranslations = await assetLoaderSecondary.load(mapper);
+        debugPrint('--LocalizeAndTranslate-- Fallback asset loader succeeded');
+      } catch (fallbackError) {
+        debugPrint(
+          '--LocalizeAndTranslate-- Fallback asset loader failed: $fallbackError',
+        );
+      }
+    }
+
+    // Merge primary and fallback translations
+    finalTranslations = <String, dynamic>{...fallbackTranslations, ...primaryTranslations};
+
+    await _writeTranslations(data: finalTranslations);
 
     debugPrint(
       '--LocalizeAndTranslate-- init | LanguageCode: ${getLanguageCode()}'

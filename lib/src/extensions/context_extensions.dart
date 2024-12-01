@@ -16,13 +16,15 @@ extension ContextExtensions on BuildContext {
   bool get isRTL => LocalizeAndTranslate.isRTL();
 
   /// [delegates] is the getter for the localization delegates.
-  Iterable<LocalizationsDelegate<dynamic>> get delegates => LocalizeAndTranslate.delegates;
+  Iterable<LocalizationsDelegate<dynamic>> get delegates =>
+      LocalizeAndTranslate.delegates;
 
   /// [setLocale] is the setter for the locale.
   void setLocale(Locale locale) => LocalizeAndTranslate.setLocale(locale);
 
   /// [setLanguageCode] is the setter for the language code.
-  void setLanguageCode(String languageCode) => LocalizeAndTranslate.setLanguageCode(languageCode);
+  void setLanguageCode(String languageCode) =>
+      LocalizeAndTranslate.setLanguageCode(languageCode);
 
   /// [countryCode] is the setter for the language code.
   void countryCode() => LocalizeAndTranslate.getCountryCode();

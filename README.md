@@ -7,11 +7,8 @@ Flutter localization in easy steps, eas
 [![Example](https://img.shields.io/badge/Example-Ex-success?style=for-the-badge)](https://pub.dev/packages/localize_and_translate/example)
 
 [![PUB](https://img.shields.io/pub/v/localize_and_translate.svg?style=for-the-badge)](https://pub.dev/packages/localize_and_translate)
-[![GitHub release](https://img.shields.io/github/v/release/msayed-net/localize_and_translate?style=for-the-badge)](https://github.com/msayed-net/localize_and_translate/releases)
 [![GitHub stars](https://img.shields.io/github/stars/msayed-net/localize_and_translate?style=for-the-badge)](https://github.com/msayed-net/localize_and_translate)
 [![GitHub forks](https://img.shields.io/github/forks/msayed-net/localize_and_translate?style=for-the-badge)](https://github.com/msayed-net/localize_and_translate)
-
-<!-- [![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fmsayed-net%2FLocalize%2FAnd%2FTranslate%2Fbadge%3Fref%3Dmain&style=for-the-badge)](https://actions-badge.atrox.dev/msayed-net/localize_and_translate/goto?ref=main) -->
 
 ## Getting Started
 
@@ -77,7 +74,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
     await LocalizeAndTranslate.init(
         assetLoader: const AssetLoaderRootBundleJson('assets/lang/'), // <-- change the path of the translation files
-        supportedLanguageCodes: <String>['ar', 'en'], // <-- or supportedLocales: [Locale('ar', 'DZ'), Locale('en', 'US')],
+        supportedLanguageCodes: <String>['ar', 'en'], // <-- or supportedLocales: [Locale('ar', 'EG'), Locale('en', 'US')],
     );
   
     runApp(
@@ -110,6 +107,7 @@ void main() async {
 | supportedLanguageCodes | or next  | List of supported languages to be converted to locales.              |
 | supportedLocales       | or prev  | List of supported locales.                                           |
 | assetLoader            | true     | Class loader for localization values. You can create your own class. |
+| assetLoaderSecondary   | true     | Class loader for localization values. You can create your own class. |
 | defaultType            | false    | Path to your folder with localization files.                         |
 | mapper                 | false    | Mapper for localization values. You can create your own class.       |
 | hivePath               | false    | Path to hive box.                                                    |
@@ -129,7 +127,7 @@ void main() async{
 
   await LocalizeAndTranslate.init(
     assetLoader: const AssetLoaderRootBundleJson('assets/lang/'), // <-- change the path of the translation files
-    supportedLocales: <Locale>[Locale('ar', 'DZ'), Locale('en', 'US')], // <-- or  supportedLanguageCodes: <String>['ar', 'en'],
+    supportedLocales: <Locale>[Locale('ar', 'EG'), Locale('en', 'US')], // <-- or  supportedLanguageCodes: <String>['ar', 'en'],
     defaultType: LocalizationDefaultType.asDefined, // <-- change the default type
   );
   // ...
@@ -230,7 +228,3 @@ RaisedButton(
   child: Text(LocaleKeys.reset_locale).tr(),
 )
 ```
-
-## Contributors
-
-[Contributors](https://github.com/msayed-net/localize_and_translate/graphs/contributors)

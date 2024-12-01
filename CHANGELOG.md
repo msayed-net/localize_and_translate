@@ -2,6 +2,10 @@
 
 * Add more features
 
+## 6.0.4
+
+* init() : add `assetLoaderSecondary` parameter to change the default assetLoaderSecondary
+
 ## 6.0.3
 
 * init() : add `mapper` parameter to change the default mapper
