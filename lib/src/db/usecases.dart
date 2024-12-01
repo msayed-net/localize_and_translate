@@ -7,6 +7,9 @@ class DBUseCases {
   /// [DBUseCases] constructor
   const DBUseCases();
 
+  /// [getKeys] is used to get all keys in the database.
+  static List<String> getKeys() => DBBox.box.keys.cast<String>().toList();
+
   /// [read] is used to retrieve a data from the database.
   static String read(String key) => DBBox.box.get(key) ?? key;
 
@@ -30,9 +33,7 @@ class DBUseCases {
 
   /// [dbStringFromLocales]
   static String dbStringFromLocales(List<Locale> data) {
-    return data
-        .map((Locale e) => '${e.languageCode}-${e.countryCode}')
-        .join('===');
+    return data.map((Locale e) => '${e.languageCode}-${e.countryCode}').join('===');
   }
 
   /// [localesFromDBString]

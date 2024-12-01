@@ -293,6 +293,13 @@ class LocalizeAndTranslate {
     return _getDeviceLocale().split(RegExp('[-_]+')).first;
   }
 
+  /// ---
+  /// ###  Determines if a language is written right-to-left based on its language code.
+  /// ---
+  static List<String> getKeys() {
+    return DBUseCases.getKeys();
+  }
+
   /// Determines if a language is written right-to-left based on its language code.
   static bool isRtlLanguage(String languageCode) {
     const Set<String> rtlLanguages = <String>{

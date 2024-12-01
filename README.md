@@ -214,6 +214,7 @@ as json values pair
 | `setLanguageCode`  | context   | Method   | Sets the language code for localization.                      |
 | `setLocale`        | context   | Method   | Sets the current locale to one of the supported locales.      |
 | `supportedLocales` | context   | Property | Gets the list of supported locales for the app.               |
+| `getKeys`          | context   | Method   | Retrieves the list of keys for the current localization file. |
 | `tr`               | string    | Method   | Retrieves the translated string for a given localization key. |
 
 Reset everything to default values passed through `init()`.
