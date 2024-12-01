@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:localize_and_translate/src/assets/asset_loader_base.dart';
 import 'package:localize_and_translate/src/constants/db_keys.dart';
+import 'package:localize_and_translate/src/mappers/json_mapper_base.dart';
 import 'package:localize_and_translate/src/mappers/nested_json_mapper.dart';
 
 /// [AssetLoaderRootBundleJson] is the asset loader for root bundle.
@@ -11,16 +12,15 @@ import 'package:localize_and_translate/src/mappers/nested_json_mapper.dart';
 class AssetLoaderRootBundleJson implements AssetLoaderBase {
   /// [AssetLoaderRootBundleJson] constructor
   /// [directory] is the path of the json directory
-  const AssetLoaderRootBundleJson(this.directory, {this.separator});
+  const AssetLoaderRootBundleJson(this.directory);
 
   /// [directory] is the path of the json directory
   final String directory;
 
-  /// [separator] is the separator for nested json keys
-  final String? separator;
-
   @override
-  Future<Map<String, dynamic>> load() async {
+  Future<Map<String, dynamic>> load([JsonMapperBase? base]) async {
+    base ??= NestedJsonMapper();
+
     final AssetManifest assetManifest = await AssetManifest.loadFromAssetBundle(rootBundle);
     final Iterable<String> paths = assetManifest.listAssets().where(
           (String element) => element.contains(directory),
@@ -45,7 +45,7 @@ class AssetLoaderRootBundleJson implements AssetLoaderBase {
       final dynamic values = json.decode(valuesStr);
 
       if (values is Map<String, dynamic>) {
-        final Map<String, dynamic> flattenedValues = NestedJsonMapper.flattenJson(values, separator: separator);
+        final Map<String, dynamic> flattenedValues = base.flattenJson(values);
 
         for (final String key in flattenedValues.keys) {
           result[DBKeys.buildPrefix(

@@ -109,8 +109,11 @@ void main() async {
 | ---------------------- | -------- | -------------------------------------------------------------------- |
 | supportedLanguageCodes | or next  | List of supported languages to be converted to locales.              |
 | supportedLocales       | or prev  | List of supported locales.                                           |
-| defaultType            | false    | Path to your folder with localization files.                         |
 | assetLoader            | true     | Class loader for localization values. You can create your own class. |
+| defaultType            | false    | Path to your folder with localization files.                         |
+| mapper                 | false    | Mapper for localization values. You can create your own class.       |
+| hivePath               | false    | Path to hive box.                                                    |
+| hiveBackendPreference  | false    | Hive backend preference.                                             |
 
 ## Usage
 

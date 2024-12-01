@@ -1,3 +1,5 @@
+import 'package:localize_and_translate/src/mappers/json_mapper_base.dart';
+
 /// [AssetLoaderBase] abstract class used to building your Custom AssetLoader
 /// Example:
 /// ```
@@ -14,5 +16,5 @@ abstract class AssetLoaderBase {
   const AssetLoaderBase();
 
   /// [load] method used to load the json file from the path
-  Future<Map<String, dynamic>> load();
+  Future<Map<String, dynamic>> load([JsonMapperBase? base]);
 }

@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:localize_and_translate/src/assets/asset_loader_base.dart';
 import 'package:localize_and_translate/src/constants/db_keys.dart';
+import 'package:localize_and_translate/src/mappers/json_mapper_base.dart';
 import 'package:localize_and_translate/src/mappers/nested_json_mapper.dart';
 
 /// [AssetLoaderNetwork] loads translation assets from a network source using a user-defined URL map.
@@ -30,7 +31,9 @@ class AssetLoaderNetwork implements AssetLoaderBase {
   final Dio _dio;
 
   @override
-  Future<Map<String, dynamic>> load() async {
+  Future<Map<String, dynamic>> load([JsonMapperBase? base]) async {
+    base ??= NestedJsonMapper();
+
     final Map<String, dynamic> result = <String, dynamic>{};
 
     for (final MapEntry<String, String> entry in urlMap.entries) {
@@ -45,7 +48,7 @@ class AssetLoaderNetwork implements AssetLoaderBase {
           final dynamic values = jsonDecode(response.data.toString());
 
           if (values is Map<String, dynamic>) {
-            final Map<String, dynamic> flattenedValues = NestedJsonMapper.flattenJson(values);
+            final Map<String, dynamic> flattenedValues = base.flattenJson(values);
 
             for (final String key in flattenedValues.keys) {
               final String prefix = DBKeys.buildPrefix(

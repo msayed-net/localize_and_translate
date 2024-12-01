@@ -1,11 +1,14 @@
+import 'package:localize_and_translate/src/mappers/json_mapper_base.dart';
+
 /// Helper class to flatten nested JSON structures.
-class NestedJsonMapper {
+class NestedJsonMapper implements JsonMapperBase {
   /// Flattens a nested JSON structure into a single-level map.
   ///
   /// - `json`: The input JSON map.
   /// - `parentKey`: The parent key used for recursive calls (leave empty for the root).
   /// - `separator`: The separator to use between nested keys (default is '.').
-  static Map<String, dynamic> flattenJson(Map<String, dynamic> json, {String parentKey = '', String? separator = '.'}) {
+  @override
+  Map<String, dynamic> flattenJson(Map<String, dynamic> json, {String parentKey = '', String? separator = '.'}) {
     final Map<String, dynamic> flattened = <String, dynamic>{};
 
     json.forEach((String key, value) {

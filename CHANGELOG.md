@@ -2,6 +2,10 @@
 
 * Add more features
 
+## 6.0.3
+
+* init() : add `mapper` parameter to change the default mapper
+
 ## 6.0.2
 
 * Enhance Docs

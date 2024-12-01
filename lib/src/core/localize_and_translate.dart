@@ -10,6 +10,7 @@ import 'package:localize_and_translate/src/constants/error_messages.dart';
 import 'package:localize_and_translate/src/db/db_box.dart';
 import 'package:localize_and_translate/src/db/usecases.dart';
 import 'package:localize_and_translate/src/exceptions/not_found_exception.dart';
+import 'package:localize_and_translate/src/mappers/json_mapper_base.dart';
 
 /// [LocalizeAndTranslate] is the main class of the package.
 /// It is used to initialize the package and to translate the words.
@@ -82,6 +83,7 @@ class LocalizeAndTranslate {
     LocalizationDefaultType defaultType = LocalizationDefaultType.device,
     String? hivePath,
     HiveStorageBackendPreference? hiveBackendPreference,
+    JsonMapperBase? mapper,
   }) async {
     if (hivePath != null && hiveBackendPreference != null) {
       Hive.init(hivePath, backendPreference: hiveBackendPreference);
@@ -99,7 +101,7 @@ class LocalizeAndTranslate {
       type: defaultType,
     );
 
-    final Map<String, dynamic> translations = await assetLoader.load();
+    final Map<String, dynamic> translations = await assetLoader.load(mapper);
 
     await _writeTranslations(data: translations);
 
