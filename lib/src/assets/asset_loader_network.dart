@@ -11,14 +11,23 @@ class AssetLoaderNetwork implements AssetLoaderBase {
   /// Creates an instance of [AssetLoaderNetwork].
   ///
   /// - `urlMap`: A map where the key is the language code (e.g., 'en', 'en_US') and the value is the full URL for the translation file.
+  /// - `headers`: An optional map of headers to include in the HTTP request.
   /// - `dio`: An optional Dio instance for customization (e.g., adding interceptors).
-  AssetLoaderNetwork(this.urlMap, {Dio? dio}) : dio = dio ?? Dio();
+  AssetLoaderNetwork(
+    this.urlMap, {
+    Dio? dio,
+    Map<String, dynamic>? headers,
+  }) : _dio = dio ?? Dio() {
+    if (headers != null) {
+      _dio.options.headers.addAll(headers);
+    }
+  }
 
   /// A map of language codes to their corresponding translation file URLs.
   final Map<String, String> urlMap;
 
   /// Dio instance for making HTTP requests.
-  final Dio dio;
+  final Dio _dio;
 
   @override
   Future<Map<String, dynamic>> load() async {
@@ -30,7 +39,7 @@ class AssetLoaderNetwork implements AssetLoaderBase {
       final String url = entry.value;
 
       try {
-        final Response<dynamic> response = await dio.get(url);
+        final Response<dynamic> response = await _dio.get(url);
 
         if (response.statusCode == 200) {
           final dynamic values = jsonDecode(response.data.toString());

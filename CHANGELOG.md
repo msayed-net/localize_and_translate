@@ -2,7 +2,7 @@
 
 * Add more features
 
-## 6.0.0-dev.6
+## 6.0.0
 
 * remove intl package
 * add AssetLoaderNetwork adapter
