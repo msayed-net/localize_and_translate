@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-/// [FutureErrorWidget] is the widget that is shown when there is an error in the future.
-class FutureErrorWidget extends StatelessWidget {
-  /// [FutureErrorWidget] constructor
-  const FutureErrorWidget({
+/// [LocalizedAppException] is the widget that is shown when there is an error in the future.
+class LocalizedAppException extends StatelessWidget {
+  /// [LocalizedAppException] constructor
+  const LocalizedAppException({
     this.msg = 'Loading ...',
     super.key,
   });
@@ -29,16 +29,14 @@ class FutureErrorWidget extends StatelessWidget {
             'Localize And Translate:',
             textAlign: TextAlign.center,
             textDirection: TextDirection.ltr,
-            style: TextStyle(
-                fontWeight: FontWeight.w700, color: Colors.red, fontSize: 25),
+            style: TextStyle(fontWeight: FontWeight.w700, color: Colors.red, fontSize: 25),
           ),
           const SizedBox(height: 10),
           Text(
             '"$msg"',
             textAlign: TextAlign.center,
             textDirection: TextDirection.ltr,
-            style: const TextStyle(
-                fontWeight: FontWeight.w500, color: Colors.red, fontSize: 14),
+            style: const TextStyle(fontWeight: FontWeight.w500, color: Colors.red, fontSize: 14),
           ),
           const SizedBox(height: 30),
         ],

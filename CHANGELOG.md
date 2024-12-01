@@ -2,6 +2,10 @@
 
 * Add more features
 
+## 6.0.5
+
+* Fix exports
+
 ## 6.0.4
 
 * init() : add `assetLoaderSecondary` parameter to change the default assetLoaderSecondary
