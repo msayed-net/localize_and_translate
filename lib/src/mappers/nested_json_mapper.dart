@@ -5,7 +5,7 @@ class NestedJsonMapper {
   /// - `json`: The input JSON map.
   /// - `parentKey`: The parent key used for recursive calls (leave empty for the root).
   /// - `separator`: The separator to use between nested keys (default is '.').
-  static Map<String, dynamic> flattenJson(Map<String, dynamic> json, [String parentKey = '', String separator = '.']) {
+  static Map<String, dynamic> flattenJson(Map<String, dynamic> json, {String parentKey = '', String? separator = '.'}) {
     final Map<String, dynamic> flattened = <String, dynamic>{};
 
     json.forEach((String key, value) {
@@ -13,7 +13,7 @@ class NestedJsonMapper {
 
       if (value is Map<String, dynamic>) {
         // Recursively flatten nested JSON
-        flattened.addAll(flattenJson(value, newKey, separator));
+        flattened.addAll(flattenJson(value, parentKey: newKey, separator: separator));
       } else {
         flattened[newKey] = value;
       }

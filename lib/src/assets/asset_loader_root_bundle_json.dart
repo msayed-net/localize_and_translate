@@ -11,10 +11,13 @@ import 'package:localize_and_translate/src/mappers/nested_json_mapper.dart';
 class AssetLoaderRootBundleJson implements AssetLoaderBase {
   /// [AssetLoaderRootBundleJson] constructor
   /// [directory] is the path of the json directory
-  const AssetLoaderRootBundleJson(this.directory);
+  const AssetLoaderRootBundleJson(this.directory, {this.separator});
 
   /// [directory] is the path of the json directory
   final String directory;
+
+  /// [separator] is the separator for nested json keys
+  final String? separator;
 
   @override
   Future<Map<String, dynamic>> load() async {
@@ -42,7 +45,7 @@ class AssetLoaderRootBundleJson implements AssetLoaderBase {
       final dynamic values = json.decode(valuesStr);
 
       if (values is Map<String, dynamic>) {
-        final Map<String, dynamic> flattenedValues = NestedJsonMapper.flattenJson(values);
+        final Map<String, dynamic> flattenedValues = NestedJsonMapper.flattenJson(values, separator: separator);
 
         for (final String key in flattenedValues.keys) {
           result[DBKeys.buildPrefix(

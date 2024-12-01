@@ -2,6 +2,13 @@
 
 * Add more features
 
+## 6.0.1
+
+* remove intl package
+* add AssetLoaderNetwork adapter
+* add NestedJsonMapper adapter
+* add separator to assetLoaders
+
 ## 6.0.0
 
 * remove intl package
