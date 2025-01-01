@@ -1,6 +1,8 @@
 import 'dart:io';
+import 'dart:ui' as ui;
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:localize_and_translate/src/assets/asset_loader_base.dart';
@@ -282,6 +284,11 @@ class LocalizeAndTranslate {
   /// ###  Returns device locale.
   /// ---
   static String _getDeviceLocale() {
+    if (kIsWeb) {
+      // Use `window.locale` for web
+      return ui.window.locale.toString();
+    }
+    // Fallback for non-web platforms
     return Platform.localeName;
   }
 
